@@ -1,0 +1,6 @@
+.annotation-red {
+   fill: var(--secondary);
+}
+.annotation-not-red {
+  fill: var(--primaryDark);
+}

@@ -1,0 +1,141 @@
+<AimmsXMLMapping>
+<ElementObjectMapping name="Instance">
+	<ElementObjectMapping name="MetaData">
+		<ElementValueMapping name="InstanceName" maps-to="sp_instanceName"/>
+		<ElementValueMapping name="DataType" maps-to="sp_dataType"/>
+		<ElementValueMapping name="Contributor" maps-to="sp_contributor"/>
+		<ElementObjectMapping name="Date">
+			<AttributeMapping  name="year" maps-to="sp_year"/>
+			<AttributeMapping  name="month" maps-to="sp_month"/>
+		</ElementObjectMapping>
+    </ElementObjectMapping>
+	<ElementObjectMapping name="Structure">
+		<ElementObjectMapping name="Format">
+			<AttributeMapping  name="leagueIds" maps-to="p_leagueIds"/>
+				<ElementValueMapping name="numberRoundRobin" maps-to="p_numberRoundRobin"/>
+				<ElementValueMapping name="compactness" maps-to="sp_compactness"/>
+				<ElementValueMapping name="gameMode" maps-to="sp_gameMode"/>
+		</ElementObjectMapping>
+	</ElementObjectMapping>
+	<ElementObjectMapping name="ObjectiveFunction">
+		<ElementValueMapping name="Objective" maps-to="sp_objective"/>
+	</ElementObjectMapping>
+	<ElementObjectMapping name="Resources">
+		<ElementObjectMapping name="Leagues">
+			<ElementObjectMapping name="league">
+				<AttributeMapping  name="id" maps-to="p_leagueId"/>
+				<AttributeMapping  name="name" maps-to="sp_leagueName"/>
+			</ElementObjectMapping>
+		</ElementObjectMapping>
+		<ElementObjectMapping name="Teams">
+			<ElementObjectMapping name="team">
+				<AttributeMapping  name="id" binds-to="i_team"/>
+                <AttributeMapping  name="league" maps-to="p_teamLeague(i_team)"/>
+				<AttributeMapping  name="name" maps-to="sp_teamName(i_team)"/>
+            </ElementObjectMapping>
+        </ElementObjectMapping>
+		<ElementObjectMapping name="Slots">
+			<ElementObjectMapping name="slot">
+				<AttributeMapping  name="id" binds-to="i_slot"/>
+				<AttributeMapping  name="name" maps-to="sp_slotName(i_slot)"/>
+            </ElementObjectMapping>
+        </ElementObjectMapping>
+	</ElementObjectMapping>
+	<ElementObjectMapping name="Constraints">
+		<ElementObjectMapping name="BasicConstraints"/>
+		<ElementObjectMapping name="CapacityConstraints">
+			<ElementObjectMapping name="CA1">
+				<AttributeMapping name="mode" binds-to="i_consMode"/>
+				<AttributeMapping name="slots" binds-to="i_consSlot"/>
+				<AttributeMapping name="teams" binds-to="i_team"/>
+				<AttributeMapping name="type" binds-to="i_consType"/>
+				<AttributeMapping name="min" maps-to="p_xml_ca1Min(i_consMode,i_consSlot,i_team,i_consType)"/>
+				<AttributeMapping name="max" maps-to="p_xml_ca1Max(i_consMode,i_consSlot,i_team,i_consType)"/>
+				<AttributeMapping name="penalty" maps-to="p_xml_ca1Penalty(i_consMode,i_consSlot,i_team,i_consType)"/>
+			</ElementObjectMapping>
+  			<ElementObjectMapping name="CA2">
+				<AttributeMapping name="mode1" binds-to="i_consMode1"/>
+				<AttributeMapping name="mode2" binds-to="i_consMode2"/>
+				<AttributeMapping name="slots" binds-to="i_consSlot"/>
+				<AttributeMapping name="teams1" binds-to="i_consTeam1"/>
+				<AttributeMapping name="teams2" binds-to="i_consTeam2"/>
+				<AttributeMapping name="type" binds-to="i_consType"/>
+				<AttributeMapping name="min" maps-to="p_xml_ca2Min(i_consMode1,i_consMode2,i_consSlot,i_consTeam1, i_consTeam2,i_consType)"/>
+				<AttributeMapping name="max" maps-to="p_xml_ca2Max(i_consMode1,i_consMode2,i_consSlot,i_consTeam1, i_consTeam2,i_consType)"/>
+				<AttributeMapping name="penalty" maps-to="p_xml_ca2Penalty(i_consMode1,i_consMode2,i_consSlot,i_consTeam1,i_consTeam2,i_consType)"/>
+			</ElementObjectMapping>
+			<ElementObjectMapping name="CA3">
+				<AttributeMapping name="mode1" binds-to="i_consMode1"/>
+				<AttributeMapping name="mode2" binds-to="i_consMode2"/>
+				<AttributeMapping name="teams1" binds-to="i_consTeam1"/>
+				<AttributeMapping name="teams2" binds-to="i_consTeam2"/>
+				<AttributeMapping name="type" binds-to="i_consType"/>
+				<AttributeMapping name="min" maps-to="p_xml_ca3Min(i_consMode1,i_consMode2,i_consTeam1,i_consTeam2,i_consType)"/>
+				<AttributeMapping name="max" maps-to="p_xml_ca3Max(i_consMode1,i_consMode2,i_consTeam1,i_consTeam2,i_consType)"/>
+				<AttributeMapping name="penalty" maps-to="p_xml_ca3Penalty(i_consMode1,i_consMode2,i_consTeam1,i_consTeam2,i_consType)"/>
+				<AttributeMapping name="intp" maps-to="p_xml_ca3Intp(i_consMode1,i_consMode2,i_consTeam1,i_consTeam2,i_consType)"/>
+			</ElementObjectMapping>
+			<ElementObjectMapping name="CA4">
+				<AttributeMapping name="mode1" binds-to="i_consMode1"/>
+				<AttributeMapping name="mode2" binds-to="i_consMode2"/>
+				<AttributeMapping name="slots" binds-to="i_consSlot"/>
+				<AttributeMapping name="teams1" binds-to="i_consTeam1"/>
+				<AttributeMapping name="teams2" binds-to="i_consTeam2"/>
+				<AttributeMapping name="type" binds-to="i_consType"/>
+				<AttributeMapping name="min" maps-to="p_xml_ca4Min(i_consMode1,i_consMode2,i_consSlot,i_consTeam1,i_consTeam2,i_consType)"/>
+				<AttributeMapping name="max" maps-to="p_xml_ca4Max(i_consMode1,i_consMode2,i_consSlot,i_consTeam1,i_consTeam2,i_consType)"/>
+				<AttributeMapping name="penalty" maps-to="p_xml_ca4Penalty(i_consMode1,i_consMode2,i_consSlot,i_consTeam1,i_consTeam2,i_consType)"/>
+			</ElementObjectMapping>
+		</ElementObjectMapping>
+ 		<ElementObjectMapping name="GameConstraints">
+			<ElementObjectMapping name="GA1">
+				<AttributeMapping name="meetings" binds-to="i_consMeeting"/>
+				<AttributeMapping name="slots" binds-to="i_consSlot"/>
+				<AttributeMapping name="type" binds-to="i_consType"/>
+				<AttributeMapping name="min" maps-to="p_xml_ga1Min(i_consMeeting,i_consSlot,i_consType)"/>
+				<AttributeMapping name="max" maps-to="p_xml_ga1Max(i_consMeeting,i_consSlot,i_consType)"/>
+				<AttributeMapping name="penalty" maps-to="p_xml_ga1Penalty(i_consMeeting,i_consSlot,i_consType)"/>
+			</ElementObjectMapping>
+		</ElementObjectMapping>
+		<ElementObjectMapping name="BreakConstraints">
+			<ElementObjectMapping name="BR1">
+				<AttributeMapping name="mode1" binds-to="i_consMode1"/>
+				<AttributeMapping name="mode2" binds-to="i_consMode2"/>
+				<AttributeMapping name="slots" binds-to="i_consSlot"/>
+				<AttributeMapping name="teams" binds-to="i_team"/>
+				<AttributeMapping name="type" binds-to="i_consType"/>
+				<AttributeMapping name="intp" maps-to="p_xml_br1Intp(i_consMode1,i_consMode2,i_consSlot,i_team,i_consType)"/>
+				<AttributeMapping name="penalty" maps-to="p_xml_br1Penalty(i_consMode1,i_consMode2,i_consSlot,i_team,i_consType)"/>
+			</ElementObjectMapping>
+			<ElementObjectMapping name="BR2">
+				<AttributeMapping name="homeMode" binds-to="i_consHomeMode"/>
+				<AttributeMapping name="mode2" binds-to="i_consMode2"/>
+				<AttributeMapping name="slots" binds-to="i_consSlot"/>
+				<AttributeMapping name="teams" binds-to="i_consTeam"/>
+				<AttributeMapping name="type" binds-to="i_consType"/>
+				<AttributeMapping name="intp" maps-to="p_xml_br2Intp(i_consHomeMode,i_consMode2,i_consSlot,i_consTeam,i_consType)"/>
+				<AttributeMapping name="penalty" maps-to="p_xml_br2Penalty(i_consHomeMode,i_consMode2,i_consSlot,i_consTeam,i_consType)"/>
+			</ElementObjectMapping>
+		</ElementObjectMapping>
+		<ElementObjectMapping name="FairnessConstraints">
+			<ElementObjectMapping name="FA2">
+				<AttributeMapping name="mode" binds-to="i_consMode"/>
+				<AttributeMapping name="slots" binds-to="i_consSlot"/>
+				<AttributeMapping name="teams" binds-to="i_consTeam"/>
+				<AttributeMapping name="type" binds-to="i_consType"/>
+				<AttributeMapping name="intp" maps-to="p_xml_fa2Intp(i_consMode,i_consSlot,i_consTeam,i_consType)"/>
+				<AttributeMapping name="penalty" maps-to="p_xml_fa2Penalty(i_consMode,i_consSlot,i_consTeam,i_consType)"/>
+			</ElementObjectMapping>
+		</ElementObjectMapping>
+		<ElementObjectMapping name="SeparationConstraints">
+			<ElementObjectMapping name="SE1">
+				<AttributeMapping name="mode1" binds-to="i_consMode1"/>
+				<AttributeMapping name="teams" binds-to="i_consTeam"/>
+				<AttributeMapping name="type" binds-to="i_consType"/>
+				<AttributeMapping name="min" maps-to="p_xml_se1Min(i_consMode1,i_consTeam,i_consType)"/>
+				<AttributeMapping name="penalty" maps-to="p_xml_se1Penalty(i_consMode1,i_consTeam,i_consType)"/>
+			</ElementObjectMapping>
+		</ElementObjectMapping>
+	</ElementObjectMapping>	 
+</ElementObjectMapping>
+</AimmsXMLMapping>

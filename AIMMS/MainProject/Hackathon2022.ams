@@ -1,0 +1,1440 @@
+## ams_version=1.0
+
+Model Main_Hackathon {
+	Comment: {
+		"Keywords:
+		Employee assignment problem, scheduling."
+	}
+	Section DO_NOT_CHANGE_Import_Data {
+		Section Quantities_and_Units {
+			Comment: {
+				"This section contains all the units and quantities that are added automatically by AIMMS.
+				It is recommended to declare all your quantities here."
+			}
+			Quantity SI_Time_Duration {
+				BaseUnit: s;
+				Conversions: {
+					minute->s : #-># * 60,
+					day->s : #-># * 86400
+				}
+				Comment: {
+					"Expresses the value for the duration of periods.
+					
+					The unit s has been added automatically because it is a required unit for AimmsWebUI.
+					
+					The unit minute has been added automatically because it is a required unit for AimmsWebUI.
+					
+					The unit day has been added automatically because it is a required unit for calendar \"c_days\"."
+				}
+			}
+		}
+		Section Import_XML {
+			StringParameter sp_fileName;
+			StringParameter sp_xmlContent;
+			Set s_instanceFile {
+				Index: i_instanceFile;
+				Parameter: ep_instanceFile;
+				Definition: {
+					{
+					    'AIMMS-1',
+					    'AIMMS-2',
+					    'AIMMS-3',
+					    'AIMMS-4',
+					    'AIMMS-5',
+					    'AIMMS-6',
+					    'AIMMS-7',
+					    'AIMMS-8',
+					    'AIMMS-9',
+					    'ITC2021_Test1',
+					    'ITC2021_Test2',
+					    'ITC2021_Test3',
+					    'ITC2021_Test4',
+					    'ITC2021_Test5',
+					    'ITC2021_Test6',
+					    'ITC2021_Test7',
+					    'ITC2021_Test8'
+					}
+				}
+				webui::ElementTextIdentifier: sp_instanceDescription;
+			}
+			StringParameter sp_instanceDescription {
+				IndexDomain: i_instanceFile;
+				Definition: {
+					data { 
+					    'AIMMS-1': "AIMMS-1 - 6 teams - No constraints",
+					    'AIMMS-2': "AIMMS-2 - 6 teams - 15 GA1",
+					    'AIMMS-3': "AIMMS-3 - 6 teams - 27 CA1",
+					    'AIMMS-4': "AIMMS-4 - 6 teams - 12 CA3",
+					    'AIMMS-5': "AIMMS-5 - 6 teams - 1 SE1",
+					    'AIMMS-6': "AIMMS-6 - 6 teams - 39 CA1",
+					    'AIMMS-7': "AIMMS-7 - 6 teams - 39 CA1 + 8 CA2",
+					    'AIMMS-8': "AIMMS-8 - 6 teams - 39 CA1 + 8 CA2 + 15 CA3",
+					    'AIMMS-9': "AIMMS-9 - 6 teams - 15 BR1 + 2 BR2 + 1 FA2 + 1 SE1",
+					    'ITC2021_Test1': "ITC2021_Test1 - 6 teams - 27 CA1 + 12 CA3 + 15 GA1 + 1 BR2 + 1 SE1",
+					    'ITC2021_Test2': "ITC2021_Test2 - 6 teams - 29 CA1 + 12 CA2 + 10 BR1 + 1 FA2",
+					    'ITC2021_Test3': "ITC2021_Test3 - 29 CA1 + 12 CA2 + 10 BR1 + 1 FA2",
+					    'ITC2021_Test4': "ITC2021_Test4 - 6 teams - 45 CA1 + 75 CA2 + 18 CA3 + 43 CA4 + 20 GA1 + 15 BR1 + 2 BR2 + 1 FA2+ 1 SE1",
+					    'ITC2021_Test5': "ITC2021_Test5 - 16 teams - 37 CA1 + 16 CA2 + 21 CA4 + 36 GA1 + 33 BR1",
+					    'ITC2021_Test6': "ITC2021_Test6 - 18 teams - 71 CA1 + 238 CA2 + 74 CA3 + 382 CA4 + 2 GA1 + 21 BR1 + 1 BR2",
+					    'ITC2021_Test7': "ITC2021_Test7 - 20 teams - 40 CA1 + 691 CA2 + 114 CA3 + 387 CA4 + 19 GA1 + 13 BR1 + 1 BR2 + 1 SE1",
+					    'ITC2021_Test8': "ITC2021_Test8 - 20 teams - 20 CA1 + 276 CA2 + 46 CA3 + 334 CA4 + 41 GA1 + 1 BR2 + 1 SE1"}
+				}
+			}
+			StringParameter sp_instanceFileName {
+				IndexDomain: i_instanceFile;
+				Definition: {
+					data { 
+					    'AIMMS-1': "AIMMS-1.xml",
+					    'AIMMS-2': "AIMMS-2.xml",
+					    'AIMMS-3': "AIMMS-3.xml",
+					    'AIMMS-4': "AIMMS-4.xml",
+					    'AIMMS-5': "AIMMS-5.xml",
+					    'AIMMS-6': "AIMMS-6.xml",
+					    'AIMMS-7': "AIMMS-7.xml",
+					    'AIMMS-8': "AIMMS-8.xml",
+					    'AIMMS-9': "AIMMS-9.xml",
+					    'ITC2021_Test1': "ITC2021_Test1.xml",
+					    'ITC2021_Test2': "ITC2021_Test2.xml",
+					    'ITC2021_Test3': "ITC2021_Test3.xml",
+					    'ITC2021_Test4': "ITC2021_Test4.xml",
+					    'ITC2021_Test5': "ITC2021_Test5.xml",
+					    'ITC2021_Test6': "ITC2021_Test6.xml",
+					    'ITC2021_Test7': "ITC2021_Test7.xml",
+					    'ITC2021_Test8': "ITC2021_Test8.xml"}
+				}
+			}
+			StringParameter sp_instanceFilePath {
+				IndexDomain: i_instanceFile;
+				Definition: {
+					data { 
+					    'AIMMS-1': "instances/Hackathon/",
+					    'AIMMS-2': "instances/Hackathon/",
+					    'AIMMS-3': "instances/Hackathon/",
+					    'AIMMS-4': "instances/Hackathon/",
+					    'AIMMS-5': "instances/Hackathon/",
+					    'AIMMS-6': "instances/Hackathon/",
+					    'AIMMS-7': "instances/Hackathon/",
+					    'AIMMS-8': "instances/Hackathon/",
+					    'AIMMS-9': "instances/Hackathon/",
+					    'ITC2021_Test1': "instances/Hackathon/",
+					    'ITC2021_Test2': "instances/Hackathon/",
+					    'ITC2021_Test3': "instances/Hackathon/",
+					    'ITC2021_Test4': "instances/Hackathon/",
+					    'ITC2021_Test5': "instances/Hackathon/",
+					    'ITC2021_Test6': "instances/Hackathon/",
+					    'ITC2021_Test7': "instances/Hackathon/",
+					    'ITC2021_Test8': "instances/Hackathon/"}
+				}
+			}
+			DeclarationSection XML_MetaData {
+				StringParameter sp_instanceName;
+				StringParameter sp_dataType;
+				StringParameter sp_contributor;
+				StringParameter sp_year;
+				StringParameter sp_month;
+			}
+			DeclarationSection XML_Structure {
+				Parameter p_leagueIds {
+					Range: integer;
+				}
+				Parameter p_numberRoundRobin {
+					Range: integer;
+				}
+				StringParameter sp_compactness;
+				StringParameter sp_gameMode;
+			}
+			DeclarationSection XML_ObjectiveFunction {
+				StringParameter sp_objective;
+			}
+			DeclarationSection Resources {
+				Parameter p_leagueId;
+				StringParameter sp_leagueName;
+				Set s_teams {
+					Index: i_team, i_team1, i_team2;
+				}
+				Parameter p_teamLeague {
+					IndexDomain: i_team;
+				}
+				StringParameter sp_teamName {
+					IndexDomain: i_team;
+				}
+				Set s_slots {
+					Index: i_slot, i_slot_aux;
+					Parameter: ep_slot;
+				}
+				StringParameter sp_slotName {
+					IndexDomain: i_slot;
+				}
+			}
+			Section XML_Constraints {
+				Set s_constraintTypes {
+					Index: i_consType;
+					Definition: {
+						{
+						    'SOFT', 'HARD'
+						}
+					}
+				}
+				Set s_constraintModes {
+					Index: i_consMode, i_consMode1, i_consMode2, i_consHomeMode;
+					Definition: {
+						{
+						    'A', 'H', 'HA', 'GLOBAL', 'SLOTS', 'EVERY', 'LEQ'
+						}
+					}
+				}
+				Set s_constraintTeams {
+					Index: i_consTeam, i_consTeam1, i_consTeam2;
+				}
+				Set s_constraintSlots {
+					Index: i_consSlot;
+				}
+				Set s_constraintMeetings {
+					Index: i_consMeeting;
+				}
+				DeclarationSection XML_CA1 {
+					Parameter p_xml_ca1Min {
+						IndexDomain: (i_consMode,i_consSlot,i_team,i_consType);
+						Range: integer;
+					}
+					Parameter p_xml_ca1Max {
+						IndexDomain: (i_consMode,i_consSlot,i_team,i_consType);
+						Range: integer;
+					}
+					Parameter p_xml_ca1Penalty {
+						IndexDomain: (i_consMode,i_consSlot,i_team,i_consType);
+					}
+				}
+				DeclarationSection XML_CA2 {
+					Parameter p_xml_ca2Min {
+						IndexDomain: (i_consMode1,i_consMode2,i_consSlot,i_consTeam1,i_consTeam2,i_consType);
+					}
+					Parameter p_xml_ca2Max {
+						IndexDomain: (i_consMode1,i_consMode2,i_consSlot,i_consTeam1,i_consTeam2,i_consType);
+					}
+					Parameter p_xml_ca2Penalty {
+						IndexDomain: (i_consMode1,i_consMode2,i_consSlot,i_consTeam1,i_consTeam2,i_consType);
+						Range: integer;
+					}
+				}
+				DeclarationSection XML_CA3 {
+					Parameter p_xml_ca3Min {
+						IndexDomain: (i_consMode1,i_consMode2,i_consTeam1,i_consTeam2,i_consType);
+					}
+					Parameter p_xml_ca3Max {
+						IndexDomain: (i_consMode1,i_consMode2,i_consTeam1,i_consTeam2,i_consType);
+					}
+					Parameter p_xml_ca3Penalty {
+						IndexDomain: (i_consMode1,i_consMode2,i_consTeam1,i_consTeam2,i_consType);
+					}
+					Parameter p_xml_ca3Intp {
+						IndexDomain: (i_consMode1,i_consMode2,i_consTeam1,i_consTeam2,i_consType);
+					}
+				}
+				DeclarationSection XML_CA4 {
+					Parameter p_xml_ca4Min {
+						IndexDomain: (i_consMode1,i_consMode2,i_consSlot,i_consTeam1,i_consTeam2,i_consType);
+					}
+					Parameter p_xml_ca4Max {
+						IndexDomain: (i_consMode1,i_consMode2,i_consSlot,i_consTeam1,i_consTeam2,i_consType);
+					}
+					Parameter p_xml_ca4Penalty {
+						IndexDomain: (i_consMode1,i_consMode2,i_consSlot,i_consTeam1,i_consTeam2,i_consType);
+					}
+				}
+				DeclarationSection XML_GA1 {
+					Parameter p_xml_ga1Min {
+						IndexDomain: (i_consMeeting,i_consSlot,i_consType);
+					}
+					Parameter p_xml_ga1Max {
+						IndexDomain: (i_consMeeting,i_consSlot,i_consType);
+					}
+					Parameter p_xml_ga1Penalty {
+						IndexDomain: (i_consMeeting,i_consSlot,i_consType);
+					}
+				}
+				DeclarationSection XML_BR1 {
+					Parameter p_xml_br1Intp {
+						IndexDomain: (i_consMode1,i_consMode2,i_consSlot,i_team,i_consType);
+					}
+					Parameter p_xml_br1Penalty {
+						IndexDomain: (i_consMode1,i_consMode2,i_consSlot,i_team,i_consType);
+					}
+				}
+				DeclarationSection XML_BR2 {
+					Parameter p_xml_br2Intp {
+						IndexDomain: (i_consHomeMode,i_consMode2,i_consSlot,i_consTeam,i_consType);
+					}
+					Parameter p_xml_br2Penalty {
+						IndexDomain: (i_consHomeMode,i_consMode2,i_consSlot,i_consTeam,i_consType);
+					}
+				}
+				DeclarationSection XML_FA2 {
+					Parameter p_xml_fa2Intp {
+						IndexDomain: (i_consMode,i_consSlot,i_consTeam,i_consType);
+					}
+					Parameter p_xml_fa2Penalty {
+						IndexDomain: (i_consMode,i_consSlot,i_consTeam,i_consType);
+					}
+				}
+				DeclarationSection XML_SE1 {
+					Parameter p_xml_se1Min {
+						IndexDomain: (i_consMode1,i_consTeam,i_consType);
+					}
+					Parameter p_xml_se1Penalty {
+						IndexDomain: (i_consMode1,i_consTeam,i_consType);
+					}
+				}
+			}
+			Procedure pr_importInstance {
+				Arguments: (sp_directory,sp_file);
+				Body: {
+					sp_fullPath := sp_directory + "/" + sp_file;
+					if FileExists(sp_fullPath) then
+					    empty DO_NOT_CHANGE_Import_Data;
+					    cleanup DO_NOT_CHANGE_Import_Data;
+					    sp_xmlContent := FileRead(sp_fullPath);
+					    sp_fileName := sp_file;
+					    dex::AddMapping("RobinX", "mappings/RobinX.xml");
+					    dex::ReadFromFile(
+					        dataFile         :  sp_fullPath, 
+						    mappingName      :  "RobinX", 
+						    emptyIdentifiers :  1, 
+						    emptySets        :  1, 
+						    resetCounters    :  1);
+					endif;
+				}
+				StringParameter sp_file {
+					Property: Input;
+				}
+				StringParameter sp_directory {
+					Property: Input;
+				}
+				StringParameter sp_fullPath;
+			}
+			Procedure pr_importSelectedInstance {
+				Body: {
+					pr_importInstance(sp_instanceFilePath(ep_instanceFile), sp_instanceFileName(ep_instanceFile));
+				}
+			}
+			Procedure pr_stringToElement {
+				Arguments: (sp_string,s_elements,sp_dividor);
+				Body: {
+					s_elements := {};
+					p_nextSep := FindString(sp_string,sp_dividor,0,0,0);
+					while p_nextSep do
+					    SetElementAdd(s_elements,ep_elem,SubString(sp_string,0,p_nextSep-1));
+					    sp_string := SubString(sp_string,p_nextSep+1,StringLength(sp_string));
+					    p_nextSep := FindString(sp_string,sp_dividor,0,0,0);
+					endwhile;
+					SetElementAdd(s_elements,ep_elem,sp_string);
+				}
+				Parameter p_nextSep;
+				StringParameter sp_string {
+					Property: Input;
+				}
+				Set s_elements {
+					Index: i_elem;
+					Parameter: ep_elem;
+					Property: InOut;
+				}
+				StringParameter sp_localString;
+				StringParameter sp_dividor {
+					Default: {
+						";"
+					}
+					Property: Optional;
+				}
+			}
+		}
+		Procedure pr_processingXML {
+			Body: {
+				! Create matches
+				empty s_matches;
+				cleanup s_matches;
+				
+				! Generate all matches
+				for (i_team1, i_team2) | i_team1 <> i_team2 do
+				    SetElementAdd(s_matches, ep_match, formatString("%e,%e", i_team1, i_team2));
+				    ep_matchHome(ep_match) := i_team1;
+				    ep_matchAway(ep_match) := i_team2;
+				endfor;
+				p_matchPair(i_match,i_match_aux) | (
+				    (ep_matchHome(i_match) = ep_matchAway(i_match_aux)) and
+				    (ep_matchAway(i_match) = ep_matchHome(i_match_aux))
+				    )
+				:=  1;
+				
+				! CA1
+				empty s_ca1;
+				cleanup s_ca1;
+				for 
+				    (i_consMode,i_consSlot,i_team,i_consType) | 
+				        p_xml_ca1Penalty(i_consMode,i_consSlot,i_team,i_consType)
+				do
+				    SetElementAdd(s_ca1, ep_ca1, loopcount);
+				    p_ca1_Min(ep_ca1) := p_xml_ca1Min(i_consMode,i_consSlot,i_team,i_consType);
+				    p_ca1_Max(ep_ca1) := p_xml_ca1Max(i_consMode,i_consSlot,i_team,i_consType);
+				    p_ca1_penalty(ep_ca1) := p_xml_ca1Penalty(i_consMode, i_consSlot, i_team, i_consType);
+				    ep_ca1_mode(ep_ca1) := i_consMode;
+				    pr_stringToElement(i_consSlot,s_loc_slots);
+				    p_ca1_slots(ep_ca1,i_loc_slot) := 1;
+				    ep_ca1_team(ep_ca1) := i_team;
+				    ep_ca1_consType(ep_ca1) := i_consType;
+				endfor;
+				
+				! CA2
+				empty s_ca2;
+				cleanup s_ca2;
+				for 
+				    (i_consMode1,i_consMode2,i_consSlot,i_consTeam1, i_consTeam2,i_consType) | 
+				        p_xml_ca2Penalty(i_consMode1, i_consMode2, i_consSlot, i_consTeam1, i_consTeam2, i_consType)
+				do
+				    SetElementAdd(s_ca2, ep_ca2, loopcount);
+				    ep_ca2_mode1(ep_ca2) := i_consMode1;
+				    ep_ca2_mode2(ep_ca2) := i_consMode2;
+				    s_loc_slots := {};
+				    pr_stringToElement(i_consSlot,s_loc_slots);
+				    p_ca2_slots(ep_ca2,i_loc_slot) := 1;
+				    pr_stringToElement(i_consTeam1,s_loc_teams);
+				    p_ca2_team1(ep_ca2,i_loc_team) := 1;
+				    pr_stringToElement(i_consTeam2,s_loc_teams);
+				    p_ca2_team2(ep_ca2,i_loc_team) := 1;
+				    ep_ca2_consType(i_ca2) := i_consType;
+				    p_ca2_min(ep_ca2) := p_xml_ca2Min(i_consMode1, i_consMode2, i_consSlot, i_consTeam1, i_consTeam2, i_consType);
+				    p_ca2_max(ep_ca2) := p_xml_ca2Max(i_consMode1, i_consMode2, i_consSlot, i_consTeam1, i_consTeam2, i_consType);
+				    p_ca2_penalty(ep_ca2) := p_xml_ca2Penalty(i_consMode1, i_consMode2, i_consSlot, i_consTeam1, i_consTeam2, i_consType);
+				endfor;
+				
+				! CA3
+				empty s_ca3;
+				cleanup s_ca3;
+				for 
+				    (i_consMode1,i_consMode2,i_consTeam1,i_consTeam2,i_consType) | 
+				        p_xml_ca3Penalty(i_consMode1, i_consMode2, i_consTeam1, i_consTeam2, i_consType)
+				do
+				    SetElementAdd(s_ca3, ep_ca3, loopcount);
+				    ep_ca3_mode1(ep_ca3) := i_consMode1;
+				    ep_ca3_mode2(ep_ca3) := i_consMode2;
+				    pr_stringToElement(i_consTeam1,s_loc_teams);
+				    p_ca3_team1(ep_ca3,i_loc_team) := 1;
+				    pr_stringToElement(i_consTeam2,s_loc_teams);
+				    p_ca3_team2(ep_ca3,i_loc_team) := 1;
+				    ep_ca3_consType(ep_ca3) := i_consType;
+				    p_ca3_min(ep_ca3) := p_xml_ca3Min(i_consMode1, i_consMode2, i_consTeam1, i_consTeam2, i_consType);
+				    p_ca3_max(ep_ca3) := p_xml_ca3Max(i_consMode1, i_consMode2, i_consTeam1, i_consTeam2, i_consType);
+				    p_ca3_penalty(ep_ca3) := p_xml_ca3Penalty(i_consMode1, i_consMode2, i_consTeam1, i_consTeam2, i_consType);
+				    p_ca3_intp(ep_ca3) := p_xml_ca3Intp(i_consMode1, i_consMode2, i_consTeam1, i_consTeam2, i_consType);
+				endfor;
+				
+				! CA4
+				empty s_ca4;
+				cleanup s_ca4;
+				for 
+				    (i_consMode1,i_consMode2,i_consSlot,i_consTeam1,i_consTeam2,i_consType) | 
+				        p_xml_ca4Penalty(i_consMode1,i_consMode2,i_consSlot,i_consTeam1,i_consTeam2,i_consType)
+				do
+				    SetElementAdd(s_ca4, ep_ca4, loopcount);
+				    ep_ca4_mode1(ep_ca4) := i_consMode1;
+				    ep_ca4_mode2(ep_ca4) := i_consMode2;
+				    pr_stringToElement(i_consSlot,s_loc_slots);
+				    p_ca4_slots(ep_ca4,i_loc_slot) := 1;
+				    pr_stringToElement(i_consTeam1,s_loc_teams);
+				    p_ca4_team1(ep_ca4,i_loc_team) := 1;
+				    pr_stringToElement(i_consTeam2,s_loc_teams);
+				    p_ca4_team2(ep_ca4,i_loc_team) := 1;
+				    ep_ca4_consType(ep_ca4) := i_consType;
+				    p_ca4_min(ep_ca4) := p_xml_ca4Min(i_consMode1, i_consMode2, i_consSlot, i_consTeam1, i_consTeam2, i_consType);
+				    p_ca4_max(ep_ca4) := p_xml_ca4Max(i_consMode1, i_consMode2, i_consSlot, i_consTeam1, i_consTeam2, i_consType);
+				    p_ca4_penalty(ep_ca4) := p_xml_ca4Penalty(i_consMode1, i_consMode2, i_consSlot, i_consTeam1, i_consTeam2, i_consType);
+				endfor;
+				
+				
+				! GA1
+				empty s_ga1;
+				cleanup s_ga1;
+				for 
+				    (i_consMeeting, i_consSlot, i_consType) | 
+				        p_xml_ga1Penalty(i_consMeeting, i_consSlot, i_consType)
+				do
+				    SetElementAdd(s_ga1, ep_ga1, loopcount);
+				    pr_stringToElement(i_consSlot,s_loc_slots);
+				    p_ga1_slots(ep_ga1,i_loc_slot) := 1;
+				    pr_stringToElement(i_consMeeting,s_loc_matches);
+				    p_ga1_matches(ep_ga1, i_loc_match) := 1;
+				    ep_ga1_consType(ep_ga1) := i_consType;
+				    p_ga1_min(ep_ga1) := p_xml_ga1Min(i_consMeeting, i_consSlot, i_consType);
+				    p_ga1_max(ep_ga1) := p_xml_ga1Max(i_consMeeting, i_consSlot, i_consType);
+				    p_ga1_penalty(ep_ga1) := p_xml_ga1Penalty(i_consMeeting, i_consSlot, i_consType);
+				endfor;
+				
+				! BR1
+				empty s_br1;
+				cleanup s_br1;
+				for 
+				    (i_consMode1, i_consMode2, i_consSlot, i_team, i_consType) | 
+				        p_xml_br1Penalty(i_consMode1, i_consMode2, i_consSlot, i_team, i_consType)
+				do
+				    SetElementAdd(s_br1, ep_br1, loopcount);
+				    ep_br1_mode1(ep_br1) := i_consMode1;
+				    ep_br1_mode2(ep_br1) := i_consMode2;
+				    pr_stringToElement(i_consSlot,s_loc_slots);
+				    p_br1_slots(ep_br1,i_loc_slot) := 1;
+				    ep_br1_team(ep_br1) := i_team;
+				    ep_br1_consType(ep_br1) := i_consType;
+				    p_br1_penalty(ep_br1) := p_xml_br1Penalty(i_consMode1, i_consMode2, i_consSlot, i_team, i_consType);
+				    p_br1_intp(ep_br1) := p_xml_br1Intp(i_consMode1, i_consMode2, i_consSlot, i_team, i_consType);
+				endfor;
+				
+				! BR2
+				empty s_br2;
+				cleanup s_br2;
+				for 
+				    (i_consHomeMode, i_consMode2, i_consSlot, i_consTeam, i_consType) | 
+				        p_xml_br2Penalty(i_consHomeMode, i_consMode2, i_consSlot, i_consTeam, i_consType)
+				do
+				    SetElementAdd(s_br2, ep_br2, loopcount);
+				    ep_br2_mode1(ep_br2) := i_consHomeMode;
+				    ep_br2_mode2(ep_br2) := i_consMode2;
+				    pr_stringToElement(i_consSlot,s_loc_slots);
+				    p_br2_slots(ep_br2,i_loc_slot) := 1;
+				    pr_stringToElement(i_consTeam,s_loc_teams);
+				    p_br2_teams(ep_br2,i_loc_team) := 1;
+				    ep_br2_consType(ep_br2) := i_consType;
+				    p_br2_penalty(ep_br2) := p_xml_br2Penalty(i_consHomeMode, i_consMode2, i_consSlot, i_consTeam, i_consType);
+				    p_br2_intp(ep_br2) := p_xml_br2Intp(i_consHomeMode, i_consMode2, i_consSlot, i_consTeam, i_consType);
+				endfor;
+				
+				! FA2
+				empty s_fa2;
+				cleanup s_fa2;
+				for 
+				    (i_consMode, i_consSlot, i_consTeam, i_consType) | 
+				        p_xml_fa2Penalty(i_consMode, i_consSlot, i_consTeam, i_consType)
+				do
+				    SetElementAdd(s_fa2, ep_fa2, loopcount);
+				    ep_fa2_mode(ep_fa2) := i_consMode;
+				    pr_stringToElement(i_consSlot,s_loc_slots);
+				    p_fa2_slots(ep_fa2,i_loc_slot) := 1;
+				    pr_stringToElement(i_consTeam,s_loc_teams);
+				    p_fa2_teams(ep_fa2,i_loc_team) := 1;
+				    ep_fa2_consType(ep_fa2) := i_consType;
+				    p_fa2_penalty(ep_fa2) := p_xml_fa2Penalty(i_consMode, i_consSlot, i_consTeam, i_consType);
+				    p_fa2_intp(ep_fa2) := p_xml_fa2Intp(i_consMode, i_consSlot, i_consTeam, i_consType);
+				endfor;
+				
+				! SE1
+				empty s_se1;
+				cleanup s_se1;
+				for 
+				    (i_consMode1,i_consTeam,i_consType) | 
+				        p_xml_se1Penalty(i_consMode1,i_consTeam,i_consType)
+				do
+				    SetElementAdd(s_se1, ep_se1, loopcount);
+				    ep_se1_mode(ep_se1) := i_consMode1;
+				    pr_stringToElement(i_consTeam,s_loc_teams);
+				    p_se1_teams(ep_se1,i_loc_team) := 1;
+				    ep_se1_consType(ep_se1) := i_consType;
+				    p_se1_penalty(ep_se1) := p_xml_se1Penalty(i_consMode1, i_consTeam, i_consType);
+				    p_se1_min(ep_se1) := p_xml_se1Min(i_consMode1, i_consTeam, i_consType);
+				endfor;
+				
+				
+				p_phased := if sp_gameMode = "P" then 1 else 0 endif;
+			}
+			Set s_loc_slots {
+				SubsetOf: s_slots;
+				Index: i_loc_slot;
+			}
+			Set s_loc_teams {
+				SubsetOf: s_teams;
+				Index: i_loc_team;
+			}
+			Set s_loc_matches {
+				SubsetOf: s_matches;
+				Index: i_loc_match;
+			}
+		}
+	}
+	Section HACK_INPUT {
+		Set s_matches {
+			Index: i_match, i_match_aux;
+			Parameter: ep_match;
+		}
+		ElementParameter ep_matchHome {
+			IndexDomain: i_match;
+			Range: s_teams;
+		}
+		ElementParameter ep_matchAway {
+			IndexDomain: i_match;
+			Range: s_teams;
+		}
+		Parameter p_matchPair {
+			IndexDomain: (i_match, i_match_aux);
+		}
+		Parameter p_phased;
+		DeclarationSection CA1 {
+			Set s_ca1 {
+				SubsetOf: Integers;
+				Index: i_ca1;
+				Parameter: ep_ca1;
+			}
+			ElementParameter ep_ca1_mode {
+				IndexDomain: i_ca1;
+				Range: s_constraintModes;
+			}
+			Parameter p_ca1_isHomeMode {
+				IndexDomain: i_ca1;
+				Definition: ep_ca1_mode(i_ca1) = 'H';
+			}
+			Parameter p_ca1_isAwayMode {
+				IndexDomain: i_ca1;
+				Definition: ep_ca1_mode(i_ca1) = 'H';
+			}
+			Parameter p_ca1_min {
+				IndexDomain: i_ca1;
+			}
+			Parameter p_ca1_max {
+				IndexDomain: i_ca1;
+			}
+			Parameter p_ca1_penalty {
+				IndexDomain: i_ca1;
+			}
+			Parameter p_ca1_slots {
+				IndexDomain: (i_ca1,i_slot);
+			}
+			ElementParameter ep_ca1_team {
+				IndexDomain: i_ca1;
+				Range: s_teams;
+			}
+			Parameter p_ca1_isTeam {
+				IndexDomain: (i_ca1,i_team);
+				Definition: ep_ca1_team(i_ca1) = i_team;
+			}
+			ElementParameter ep_ca1_consType {
+				IndexDomain: i_ca1;
+				Range: s_constraintTypes;
+			}
+			Parameter p_ca1_isSoft {
+				IndexDomain: i_ca1;
+				Definition: ep_ca1_consType(i_ca1) = 'SOFT';
+			}
+			Parameter p_ca1_isHard {
+				IndexDomain: i_ca1;
+				Definition: ep_ca1_consType(i_ca1) = 'SOFT';
+			}
+		}
+		DeclarationSection CA2 {
+			Set s_ca2 {
+				SubsetOf: Integers;
+				Index: i_ca2;
+				Parameter: ep_ca2;
+			}
+			ElementParameter ep_ca2_mode1 {
+				IndexDomain: i_ca2;
+				Range: s_constraintModes;
+			}
+			ElementParameter ep_ca2_mode2 {
+				IndexDomain: i_ca2;
+				Range: s_constraintModes;
+			}
+			Parameter p_ca2_slots {
+				IndexDomain: (i_ca2,i_slot);
+			}
+			Parameter p_ca2_team1 {
+				IndexDomain: (i_ca2,i_team);
+			}
+			Parameter p_ca2_team2 {
+				IndexDomain: (i_ca2,i_team);
+			}
+			ElementParameter ep_ca2_consType {
+				IndexDomain: i_ca2;
+				Range: s_constraintTypes;
+			}
+			Parameter p_ca2_penalty {
+				IndexDomain: i_ca2;
+			}
+			Parameter p_ca2_min {
+				IndexDomain: i_ca2;
+			}
+			Parameter p_ca2_max {
+				IndexDomain: i_ca2;
+			}
+		}
+		DeclarationSection CA3 {
+			Set s_ca3 {
+				SubsetOf: Integers;
+				Index: i_ca3;
+				Parameter: ep_ca3;
+			}
+			ElementParameter ep_ca3_mode1 {
+				IndexDomain: i_ca3;
+				Range: s_constraintModes;
+			}
+			ElementParameter ep_ca3_mode2 {
+				IndexDomain: i_ca3;
+				Range: s_constraintModes;
+			}
+			Parameter p_ca3_team1 {
+				IndexDomain: (i_ca3,i_team);
+			}
+			Parameter p_ca3_team2 {
+				IndexDomain: (i_ca3,i_team);
+			}
+			ElementParameter ep_ca3_consType {
+				IndexDomain: i_ca3;
+				Range: s_constraintTypes;
+			}
+			Parameter p_ca3_penalty {
+				IndexDomain: i_ca3;
+			}
+			Parameter p_ca3_intp {
+				IndexDomain: i_ca3;
+			}
+			Parameter p_ca3_min {
+				IndexDomain: i_ca3;
+			}
+			Parameter p_ca3_max {
+				IndexDomain: i_ca3;
+			}
+		}
+		DeclarationSection CA4 {
+			Set s_ca4 {
+				SubsetOf: Integers;
+				Index: i_ca4;
+				Parameter: ep_ca4;
+			}
+			ElementParameter ep_ca4_mode1 {
+				IndexDomain: i_ca4;
+				Range: s_constraintModes;
+			}
+			ElementParameter ep_ca4_mode2 {
+				IndexDomain: i_ca4;
+				Range: s_constraintModes;
+			}
+			Parameter p_ca4_slots {
+				IndexDomain: (i_ca4,i_slot);
+			}
+			Parameter p_ca4_team1 {
+				IndexDomain: (i_ca4,i_team);
+			}
+			Parameter p_ca4_team2 {
+				IndexDomain: (i_ca4,i_team);
+			}
+			ElementParameter ep_ca4_consType {
+				IndexDomain: i_ca4;
+				Range: s_constraintTypes;
+			}
+			Parameter p_ca4_penalty {
+				IndexDomain: i_ca4;
+			}
+			Parameter p_ca4_min {
+				IndexDomain: i_ca4;
+			}
+			Parameter p_ca4_max {
+				IndexDomain: i_ca4;
+			}
+		}
+		DeclarationSection GA1 {
+			Set s_ga1 {
+				SubsetOf: Integers;
+				Index: i_ga1;
+				Parameter: ep_ga1;
+			}
+			Parameter p_ga1_penalty {
+				IndexDomain: i_ga1;
+			}
+			Parameter p_ga1_min {
+				IndexDomain: i_ga1;
+			}
+			Parameter p_ga1_max {
+				IndexDomain: i_ga1;
+			}
+			Parameter p_ga1_slots {
+				IndexDomain: (i_ga1,i_slot);
+			}
+			Parameter p_ga1_matches {
+				IndexDomain: (i_ga1,i_match);
+			}
+			ElementParameter ep_ga1_consType {
+				IndexDomain: i_ga1;
+				Range: s_constraintTypes;
+			}
+		}
+		DeclarationSection BR1 {
+			Set s_br1 {
+				SubsetOf: Integers;
+				Index: i_br1;
+				Parameter: ep_br1;
+			}
+			ElementParameter ep_br1_mode1 {
+				IndexDomain: i_br1;
+				Range: s_constraintModes;
+			}
+			ElementParameter ep_br1_mode2 {
+				IndexDomain: i_br1;
+				Range: s_constraintModes;
+			}
+			Parameter p_br1_slots {
+				IndexDomain: (i_br1,i_slot);
+			}
+			ElementParameter ep_br1_team {
+				IndexDomain: i_br1;
+				Range: s_teams;
+			}
+			ElementParameter ep_br1_consType {
+				IndexDomain: i_br1;
+				Range: s_constraintTypes;
+			}
+			Parameter p_br1_penalty {
+				IndexDomain: i_br1;
+			}
+			Parameter p_br1_intp {
+				IndexDomain: i_br1;
+			}
+		}
+		DeclarationSection BR2 {
+			Set s_br2 {
+				SubsetOf: Integers;
+				Index: i_br2;
+				Parameter: ep_br2;
+			}
+			ElementParameter ep_br2_mode1 {
+				IndexDomain: i_br2;
+				Range: s_constraintModes;
+			}
+			ElementParameter ep_br2_mode2 {
+				IndexDomain: i_br2;
+				Range: s_constraintModes;
+			}
+			Parameter p_br2_slots {
+				IndexDomain: (i_br2,i_slot);
+			}
+			Parameter p_br2_teams {
+				IndexDomain: (i_br2,i_team);
+			}
+			ElementParameter ep_br2_consType {
+				IndexDomain: i_br2;
+				Range: s_constraintTypes;
+			}
+			Parameter p_br2_penalty {
+				IndexDomain: i_br2;
+			}
+			Parameter p_br2_intp {
+				IndexDomain: i_br2;
+			}
+		}
+		DeclarationSection FA2 {
+			Set s_fa2 {
+				SubsetOf: Integers;
+				Index: i_fa2;
+				Parameter: ep_fa2;
+			}
+			ElementParameter ep_fa2_mode {
+				IndexDomain: i_fa2;
+				Range: s_constraintModes;
+			}
+			Parameter p_fa2_slots {
+				IndexDomain: (i_fa2,i_slot);
+			}
+			Parameter p_fa2_teams {
+				IndexDomain: (i_fa2,i_team);
+			}
+			ElementParameter ep_fa2_consType {
+				IndexDomain: i_fa2;
+				Range: s_constraintTypes;
+			}
+			Parameter p_fa2_penalty {
+				IndexDomain: i_fa2;
+			}
+			Parameter p_fa2_intp {
+				IndexDomain: i_fa2;
+			}
+		}
+		DeclarationSection SE1 {
+			Set s_se1 {
+				SubsetOf: Integers;
+				Index: i_se1;
+				Parameter: ep_se1;
+			}
+			ElementParameter ep_se1_mode {
+				IndexDomain: i_se1;
+				Range: s_constraintModes;
+			}
+			Parameter p_se1_teams {
+				IndexDomain: (i_se1,i_team);
+			}
+			ElementParameter ep_se1_consType {
+				IndexDomain: i_se1;
+				Range: s_constraintTypes;
+			}
+			Parameter p_se1_min {
+				IndexDomain: i_se1;
+			}
+			Parameter p_se1_penalty {
+				IndexDomain: i_se1;
+			}
+		}
+		Procedure pr_importAndProcessData {
+			Body: {
+				if not ep_instanceFile then
+				    return 0;
+				endif;
+				
+				!import selected instance
+				pr_importInstance(sp_instanceFilePath(ep_instanceFile), sp_instanceFileName(ep_instanceFile));
+				
+				!Process xml to data model
+				pr_processingXML;
+				
+				!clear validation information
+				empty p_objectiveFunction, p_infeasibilities, sp_validationDate;
+				sp_response := "Instance imported - not validated yet!";
+			}
+		}
+	}
+	Section DO_NOT_CHANGE_Random_Match_Scheduling {
+		Parameter p_schedule {
+			IndexDomain: (i_slot,i_match);
+		}
+		Set s_loc_slots {
+			SubsetOf: s_slots;
+			Index: i_loc_slot;
+		}
+		Parameter p_NbResets;
+		Parameter p_TotalNbResets;
+		Parameter p_compactTimetable;
+		Parameter p_oneMatchPerRound;
+		Parameter p_relaxThreshold {
+			Definition: 10000;
+		}
+		Procedure pr_generateSchedule {
+			Body: {
+				if not card(s_matches) then
+				    webui::RequestPerformWebUIDialog(
+				        title   :  "No input data", 
+				        message :  "Apparaently, there is no input data. Please import an instance.", 
+				        actions :  s_loc_actions, 
+				        onDone  :  'webui::NoOp1');
+				    return 0;
+				endif;
+				
+				! start off without any relaxed constraints
+				p_oneMatchPerRound := 1;
+				s_loc_teamsThisSlot := {};
+				
+				!Update remaining matches
+				pr_remainingMatches(s_loc_matchingsLeft,s_loc_teamsThisSlot,p_phased,p_oneMatchPerRound);
+				s_loc_slots := {i_slot | ord(i_slot) <= (card(i_slot) / 2)};
+				ep_slot := first(i_loc_slot);
+				
+				! First Round
+				while card(s_loc_slots) > 0 do
+				    p_oneMatchPerRound := 1;
+				    repeat
+				        if not Card(s_loc_matchingsLeft) then
+				            p_TotalNbResets := p_TotalNbResets + 1;
+				            p_NbResets := p_NbResets + 1;
+				            ! round failed - reseting round and try again
+				            p_schedule(ep_slot, i_match) := 0;
+				            s_loc_teamsThisSlot := {};
+				            !Update remaining matches
+				            if p_NbResets > p_relaxThreshold then
+				                ! relaxing constraints (stuck on round)
+				                p_oneMatchPerRound := 0;
+				                pr_remainingMatches(s_loc_matchingsLeft,s_loc_teamsThisSlot,p_phased,p_oneMatchPerRound);
+				                p_NbResets := 0;
+				            else
+				                pr_remainingMatches(s_loc_matchingsLeft,s_loc_teamsThisSlot,p_phased,p_oneMatchPerRound);
+				            endif;            
+				        endif;
+				        ! Randomly select a match to add
+				        ep_match := nth(i_loc_matchLeft, round(uniform(0, card(i_loc_matchLeft))));
+				        p_schedule(ep_slot, ep_match) := 1;
+				        ep_scheduledMatch(ep_matchHome(ep_match),ep_matchAway(ep_match)) 
+				        :=  ep_slot;
+				        s_loc_teamsThisSlot 
+				        :=  s_loc_teamsThisSlot + {ep_matchHome(ep_match)}+ { ep_matchAway(ep_match)};
+				
+				        ! Done allocating for this round
+				        if sum(i_match, p_schedule(ep_slot, i_match)) >= round((card(i_team) / 2),0) then
+				            s_loc_slots := s_loc_slots - {ep_slot};
+				            ep_slot := first(i_loc_slot);
+				            s_loc_teamsThisSlot := {};
+				            pr_remainingMatches(s_loc_matchingsLeft,s_loc_teamsThisSlot,p_phased,p_oneMatchPerRound);
+				            break;
+				        endif;
+				        !Update remaining matches
+				        pr_remainingMatches(s_loc_matchingsLeft,s_loc_teamsThisSlot,p_phased,p_oneMatchPerRound);
+				    endrepeat;
+				endwhile;
+				
+				
+				! Second Round
+				!Update remaining matches
+				p_oneMatchPerRound := 1;
+				pr_remainingMatches(s_loc_matchingsLeft,s_loc_teamsThisSlot,0,p_oneMatchPerRound);
+				s_loc_slots := {i_slot | ord(i_slot) > (card(i_slot) / 2)};
+				ep_slot := first(i_loc_slot);
+				s_loc_teamsThisSlot := {};
+				
+				while card(s_loc_slots) > 0 do
+				    p_oneMatchPerRound := 1;
+				    repeat
+				        if not Card(s_loc_matchingsLeft) then
+				            p_TotalNbResets := p_TotalNbResets + 1;
+				            p_NbResets := p_NbResets + 1;
+				            ! reseting round
+				            p_schedule(ep_slot, i_match) := 0;
+				            s_loc_teamsThisSlot := {};
+				            !Update remaining matches
+				            if p_NbResets > p_relaxThreshold then
+				                ! relaxing constraints
+				                p_oneMatchPerRound := 0;
+				                pr_remainingMatches(s_loc_matchingsLeft,s_loc_teamsThisSlot,0,p_oneMatchPerRound);
+				                p_NbResets := 0;
+				            else
+				                pr_remainingMatches(s_loc_matchingsLeft,s_loc_teamsThisSlot,0,p_oneMatchPerRound);
+				            endif;            
+				        endif;
+				        ! Randomly select a match to add
+				        ep_match := nth(i_loc_matchLeft, round(uniform(0, card(i_loc_matchLeft))));
+				        p_schedule(ep_slot, ep_match) := 1;
+				        ep_scheduledMatch(ep_matchHome(ep_match),ep_matchAway(ep_match)) 
+				        :=  ep_slot;
+				        s_loc_teamsThisSlot 
+				        :=  s_loc_teamsThisSlot + {ep_matchHome(ep_match)}+ { ep_matchAway(ep_match)};
+				
+				        if sum(i_match, p_schedule(ep_slot, i_match)) >= round((card(i_team) / 2),0) then
+				            s_loc_slots := s_loc_slots - {ep_slot};
+				            ep_slot := first(i_loc_slot);
+				            s_loc_teamsThisSlot := {};
+				            pr_remainingMatches(s_loc_matchingsLeft,s_loc_teamsThisSlot,0,p_oneMatchPerRound);
+				            break;
+				        endif;
+				        !Update remaining matches
+				        pr_remainingMatches(s_loc_matchingsLeft,s_loc_teamsThisSlot,0, p_oneMatchPerRound);
+				    endrepeat;
+				endwhile;
+			}
+			Set s_loc_actions {
+				InitialData: {
+					{'Close'}
+				}
+			}
+			Set s_loc_teamsThisSlot {
+				SubsetOf: s_teams;
+				Index: i_loc_teamsThisSlot;
+				Parameter: ep_loc_teamsThisSlot;
+			}
+			Set s_loc_matchingsLeft {
+				SubsetOf: s_matches;
+				Index: i_loc_matchLeft;
+			}
+		}
+		Procedure pr_remainingMatches {
+			Arguments: (s_loc_matchingsLeft,s_loc_teamsThisSlot,p_firstRound,p_oneMatchPerRound);
+			Body: {
+				! what are current options
+				!start with all matches
+				s_loc_matchingsLeft := s_matches;
+				! remove previouslly allocated
+				s_loc_matchingsLeft -= {i_match | exists(i_slot_aux | p_schedule(i_slot_aux, i_match))};
+				
+				! If compact, then remove allocated pairing for first round
+				if p_firstRound then
+				    s_loc_matchingsLeft -= {i_match | 
+				            (exists((i_match_aux,i_slot_aux) | 
+				                (p_matchPair(i_match, i_match_aux)
+				                or p_matchPair(i_match_aux, i_match))
+				                and p_schedule(i_slot_aux, i_match_aux)))};
+				endif;
+				
+				! remove matches for teams already playing this round
+				if p_oneMatchPerRound then
+				    s_loc_matchingsLeft -= {i_match | 
+				        (exists(i_loc_teamsThisSlot | 
+				            (ep_matchHome(i_match) = i_loc_teamsThisSlot)
+				            or (ep_matchAway(i_match) = i_loc_teamsThisSlot)))};
+				endif;
+			}
+			Parameter p_firstRound {
+				Property: Optional;
+			}
+			Parameter p_oneMatchPerRound {
+				Property: Optional;
+			}
+			Set s_loc_matchingsLeft {
+				SubsetOf: s_matches;
+				Property: Output;
+			}
+			Set s_loc_teamsThisSlot {
+				SubsetOf: s_teams;
+				Index: i_loc_teamsThisSlot;
+				Property: Input;
+			}
+		}
+	}
+	Section HACK_PROCESS {
+		DeclarationSection Games {
+			ElementParameter ep_scheduledMatch {
+				IndexDomain: (i_team1, i_team2);
+				Range: s_slots;
+				Comment: {
+					"THIS IS THE SCHEDULE USED BY VALIDATION! DO NOT CHANGE THE NAME OF THE IDENTIFIER!"
+				}
+			}
+		}
+		Procedure pr_optimizeTimetable {
+			Body: {
+				webui::RequestPerformWebUIDialog(
+				    title   :  "No optimization process", 
+				    message :  "It appears you have not yet created a custom optimization procedure.\n" +
+				               "Check identifier pr_optimizeTimetable.", 
+				    actions :  s_loc_actions, 
+				    onDone  :  'webui::NoOp1');
+			}
+			Set s_loc_actions {
+				InitialData: {
+					{'Close'}
+				}
+			}
+		}
+	}
+	Section DO_NOT_CHANGE_Output_Data {
+		StringParameter sp_out_xmlContent;
+		DeclarationSection Output_MetaData {
+			StringParameter sp_out_instanceName;
+			StringParameter sp_out_solutionName;
+			Parameter p_out_infeastiblity;
+			Parameter p_out_objective;
+		}
+		Procedure pr_exportXml {
+			Body: {
+				if not DirectoryExists("output") then
+				    DirectoryCreate("output");
+				elseif FileExists("output/output.xml") then
+				    FileDelete("output/output.xml");
+				endif;
+				
+				sp_out_instanceName := sp_fileName;
+				sp_out_solutionName := "Test";
+				p_out_infeastiblity := 0;
+				p_out_objective := 0;
+				
+				
+				dex::AddMapping("RobinXOutput", "mappings/RobinXOutput.xml");
+				dex::WriteToFile(
+					dataFile    :  "output/output.xml", 
+					mappingName :  "RobinXOutput", 
+					pretty      :  1);
+				
+				sp_out_xmlContent := FileRead("output/output.xml");
+			}
+		}
+	}
+	Section DO_NOT_CHANGE_Validator {
+		StringParameter sp_headers {
+			IndexDomain: hdr;
+			Definition: {
+				data 
+				{ 
+				    Accept          : "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,applicatio"
+				                    "n/signed-exchange;v=b3;q=0.9",
+				    Accept-Language : "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
+				    Cache-Control   : "max-age=0",
+				    Connection      : "keep-alive",
+				    Content-Type    : "application/x-www-form-urlencoded",!"application/json",!"application/x-www-form-urlencoded",
+				    Origin          : "https://www.sportscheduling.ugent.be",
+				    Referer         : "https://www.sportscheduling.ugent.be/ITC2021/validator.php",
+				    Sec-Fetch-Dest  : "document",
+				    Sec-Fetch-Mode  : "navigate",
+				    Sec-Fetch-Site  : "same-origin",
+				    Sec-Fetch-User  : "?1",
+				    Sec-GPC         : "1",
+				    Upgrade-Insecure-Requests: "1",
+				    User-Agent      : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+				                    "(KHTML, like Gecko) Chrome/103.0.5060.66 Safari/537.36"
+				    }
+			}
+		}
+		Set s_headerSet {
+			Index: hdr;
+			Definition: {
+				data { 
+				    Accept, Accept-Language, Cache-Control, Connection,Content-Type, Origin, 
+				    Referer, Sec-Fetch-Dest, Sec-Fetch-Mode, Sec-Fetch-Site, Sec-Fetch-User,
+				    Sec-GPC, Upgrade-Insecure-Requests,User-Agent }
+			}
+		}
+		Parameter p_sucess;
+		StringParameter sp_body;
+		StringParameter sp_requestBodyFullFileName {
+			Definition: "./output/request-body.txt";
+		}
+		File f_out {
+			Name: sp_requestBodyFullFileName;
+			Device: Disk;
+			Mode: replace;
+		}
+		StringParameter sp_response;
+		StringParameter sp_objectiveResponse;
+		Parameter p_infeasibilities {
+			Range: integer;
+		}
+		Parameter p_objectiveFunction {
+			Range: integer;
+		}
+		StringParameter sp_validationDate;
+		ElementParameter ep_callbackProcedure {
+			Range: AllProcedures;
+			Definition: 'pr_processValidation';
+		}
+		Procedure pr_validateSolution {
+			Body: {
+				if not exists((i_team1, i_team2) | ep_scheduledMatch(i_team1, i_team2)) then
+				    webui::RequestPerformWebUIDialog(
+				        title   :  "No solution", 
+				        message :  "Apparaently, there is no solution available. Please check identifier ep_scheduledMatch.", 
+				        actions :  s_loc_actions, 
+				        onDone  :  'webui::NoOp1');
+				    return 0;
+				endif;
+				pr_exportXml;
+				
+				!clean up and organization
+				
+				if FileExists(sp_requestBodyFullFileName) then
+				    FileDelete(sp_requestBodyFullFileName);
+				endif;
+				
+				if FileExists("./output/tracefile.log") then
+				    FileDelete("./output/tracefile.log");
+				endif;
+				
+				if FileExists("./output/response.html") then
+				    FileDelete("./output/response.html");
+				endif;
+				
+				if not DirectoryExists("./output/") then
+				    DirectoryCreate("./output/");
+				endif;
+				
+				! create body file
+				sp_body 
+				:=  "instanceFileName=" + sp_instanceName + 
+				    "&SOLUTIONNAME=" + sp_fileName +
+				    "&INSTANCENAME= "+ sp_instanceName + 
+				    "&CONTRIBUTOR=" + "AIMMSCampus2023" +
+				    "&&DATE=2023-07-10" + 
+				    "&SOLUTIONMETHOD=A" + 
+				    "&VALIDATIONINPUT=" + sp_xmlContent +
+				    "&VALIDATIONSOL=" + sp_out_xmlContent;
+				put f_out;
+				put sp_body;
+				putclose;
+				
+				dex::client::CloseAllRequests();
+				
+				dex::client::NewRequest(
+				    theRequest   :  "post_validateSolution", 
+				    url          :  "https://robinxval.ugent.be/ITC2021/validator.php",
+				    callback     :  ep_callbackProcedure, 
+				    httpMethod   :  'POST',
+				    requestFile  :  sp_requestBodyFullFileName, 
+				    responseFile :  "./output/response.html", 
+				    traceFile    :  "./output/tracefile.log");
+				
+				dex::client::AddRequestHeaders(
+				    theRequest :  "post_validateSolution", 
+				    headers    :  sp_headers(hdr));
+				
+				p_sucess := dex::client::PerformRequest("post_validateSolution");
+			}
+			Set s_loc_actions {
+				InitialData: {
+					{'Close'}
+				}
+			}
+		}
+		Procedure pr_processValidation {
+			Arguments: (theRequest,statusCode,errorCode);
+			Body: {
+				sp_response := FileRead( "./output/response.html");
+				
+				sp_response 
+				:=  FindReplaceStrings(
+					SearchString  :  SubString(sp_response, 
+					    FindString(sp_response, "RobinX Validator 2.0", 0, 0, 0), 
+					    FindString(sp_response, "-------------------------------------------------------------------
+				</p>\t\t</pre>"-1, 0, 0, 0)) + "-------------------------------------------------------------------", 
+					Key           :  "\n", 
+					Replacement   :  "<br>", 
+					CaseSensitive :  0, 
+					WordOnly      :  0);
+				
+				sp_objectiveResponse := SubString(sp_response, 
+					    FindString(sp_response, "<br>       Objective:", 0, 0, 0)+21, 
+					    FindString(sp_response, "<br>       --------------------------------------------------------------------")-1);
+				
+				p_objectiveFunction
+				:=  val(RegexReplace(sp_objectiveResponse,"^.+?[0-9]+\\s+",""));
+				p_infeasibilities 
+				:=  val(RegexReplace(sp_objectiveResponse,"[0-9]+\\s+$",""));
+				sp_validationDate := CurrentToString("%d/%m/%c%y %H:%M:%S");
+			}
+			StringParameter theRequest {
+				Property: Input;
+			}
+			Parameter statusCode {
+				Property: Input;
+			}
+			Parameter errorCode {
+				Property: Input;
+			}
+		}
+	}
+	Section HACK_UI_Declarations {
+		Procedure pr_empty;
+		StringParameter sp_logo {
+			Definition: "aimms_logo.png";
+		}
+		Section Workflow {
+			StringParameter sp_myWorkflows {
+				IndexDomain: (webui::indexWorkflowOrder,webui::indexWorkflowSpec);
+			}
+			StringParameter sp_myWorkflowSteps {
+				IndexDomain: (webui::indexWorkflowOrder,webui::indexNoOfPages,webui::indexWorkflowPageSpec);
+				Definition: {
+					data 
+					{ ( 1, 1, displayText       ) : "Welcome"            ,  ( 1, 1, icon              ) : "aimms-happy"        ,
+					  ( 1, 1, pageId            ) : "home"               ,  ( 1, 1, tooltip           ) : "welcome"            ,
+					  ( 1, 1, workflowPageState ) : "active"             ,  ( 1, 1, pageDataState     ) : "Incomplete"         ,
+					  ( 1, 2, displayText       ) : "Story"              ,
+					  ( 1, 2, icon              ) : "aimms-lamp5"        ,  ( 1, 2, pageId            ) : "story"              ,
+					  ( 1, 2, tooltip           ) : "Problem description",  ( 1, 2, workflowPageState ) : "active"             ,
+					  ( 1, 2, pageDataState     ) : "Incomplete"         ,
+					  ( 1, 3, displayText       ) : "Setup"              ,  ( 1, 3, icon              ) : "aimms-equalizer2"   ,
+					  ( 1, 3, pageId            ) : "inputs"             ,  ( 1, 3, tooltip           ) : "Master data"        ,
+					  ( 1, 3, workflowPageState ) : "active"             ,  ( 1, 3, pageDataState     ) : "Incomplete"         }
+				}
+			}
+		}
+		Section Pages {
+			Section Save_Scenario_Dialog {
+				Procedure pr_openImportInstance {
+					Body: {
+						webui::OpenDialogPage(
+							pageId  :  'crud', 
+							title   :  "Import Instance", 
+							actions :  s_loc_actions, 
+							onDone  :   'webui::NoOp1');
+					}
+					Set s_loc_actions {
+						InitialData: {
+							{'Close'}
+						}
+					}
+				}
+				StringParameter sp_saveFileName;
+				Procedure pr_saveCase {
+					Body: {
+						if sp_saveFileName = "" then
+						    webui::RequestPerformWebUIDialog(
+						        title   :  "No name", 
+						        message :  "Please define a name for the case file.", 
+						        actions :  s_loc_actions, 
+						        onDone  :  'webui::NoOp1');
+						elseif FileExists("data/" + sp_saveFileName + ".data") then
+						    webui::RequestPerformWebUIDialog(
+						        title   :  "File already exists", 
+						        message :  "The select file name already exists in the data folder.\nPlease try again.", 
+						        actions :  s_loc_actions, 
+						        onDone  :  'webui::NoOp1');
+						else
+						    CaseFileSave("data/" + sp_saveFileName+ ".data",AllIdentifiers);
+						endif;
+					}
+					Set s_loc_actions {
+						InitialData: {
+							{'OK'}
+						}
+					}
+				}
+				Procedure pr_loadCase;
+			}
+			Section Setup_Page {
+				Parameter p_qtyConstraintsCA1 {
+					Range: integer;
+					Definition: card(s_ca1);
+				}
+				Parameter p_qtyConstraintsCA2 {
+					Range: integer;
+					Definition: card(s_ca2);
+				}
+				Parameter p_qtyConstraintsCA3 {
+					Range: integer;
+					Definition: card(s_ca3);
+				}
+				Parameter p_qtyConstraintsCA4 {
+					Range: integer;
+					Definition: card(s_ca4);
+				}
+				Parameter p_qtyConstraintsGA1 {
+					Range: integer;
+					Definition: card(s_ga1);
+				}
+				Parameter p_qtyConstraintsBR1 {
+					Range: integer;
+					Definition: card(s_br1);
+				}
+				Parameter p_qtyConstraintsBR2 {
+					Range: integer;
+					Definition: card(s_br2);
+				}
+				Parameter p_qtyConstraintsFA2 {
+					Range: integer;
+					Definition: card(s_fa2);
+				}
+				Parameter p_qtyConstraintsSE1 {
+					Range: integer;
+					Definition: card(s_se1);
+				}
+				Parameter p_qtyTeams {
+					Range: integer;
+					Definition: card(s_teams);
+				}
+				DeclarationSection Setup_PageAction {
+					StringParameter sp_setupSecondaryActions {
+						IndexDomain: (webui::indexPageExtension,webui::indexPageActionSpec);
+						Definition: {
+							data 
+							{ ( 1, displaytext ) : "Import"               ,  ( 1, icon        ) : "aimms-database-insert",
+							  ( 1, procedure   ) : "pr_openImportInstance",  ( 1, state       ) : "active"               ,
+							  ( 2, displaytext ) : "Random Schedule"      ,  ( 2, icon        ) : "aimms-shuffle"        ,
+							  ( 2, procedure   ) : "pr_generateSchedule"  ,  ( 2, state       ) : "active"               ,
+							  ( 3, displaytext ) : "Hack-Optimizer"       ,  ( 3, icon        ) : "aimms-play3"            ,
+							  ( 3, procedure   ) : "pr_optimizeTimetable"          ,  ( 3, state       ) : "active"               ,
+							  ( 4, displaytext ) : "Validate!"            ,  ( 4, icon        ) : "aimms-checkmark"      ,
+							  ( 4, procedure   ) : "pr_validateSolution"  ,  ( 4, state       ) : "active"               ,
+							  ( 5, displaytext ) : "Save Case"            ,  ( 5, icon        ) : "aimms-floppy-disk"    ,
+							  ( 5, procedure   ) : "pr_saveCase"          ,  ( 5, state       ) : "active"                }
+						}
+					}
+				}
+			}
+		}
+		Section FlagsIdentifier {
+			StringParameter sp_readOnlyFlag {
+				Definition: "readonly";
+			}
+		}
+	}
+	Procedure MainInitialization;
+	Procedure MainExecution;
+	Procedure MainTermination {
+		Body: {
+			return 1;
+		}
+	}
+}

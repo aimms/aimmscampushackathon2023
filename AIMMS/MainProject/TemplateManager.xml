@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<TemplateManager>
+	<Page Name="All Data Pages" PageGUID="18B58BF4-9FDF-412E-AA5D-86BDF99549ED" />
+	<Page Name="[Data Page] p_loc_schedule" PageGUID="506713C1-D3DD-4585-915F-B605F2FA576C" />
+	<Page Name="[Data Page] p_xml_ca1Max" PageGUID="6C05E1EA-33FE-49F9-A8D8-F57EA4A4B40B" />
+	<Page Name="[Data Page] p_xml_ca1Penalty" PageGUID="D76BE238-04CC-4356-844C-FCC635CED924" />
+	<Page Name="[Data Page] p_xml_ca2Min" PageGUID="B32D2E04-D6D6-432B-9D9D-E256308DBB92" />
+	<Page Name="[Data Page] p_xml_ca2Max" PageGUID="B0482507-3452-4C5D-A7C4-4E0777886C6F" />
+	<Page Name="[Data Page] p_xml_ca2Penalty" PageGUID="1AF0C770-4795-4CC8-9C31-E4D5448EDE3C" />
+	<Page Name="[Data Page] p_xml_ca3Min" PageGUID="3BC1E223-7D8E-4CE7-984D-08D0DED6A422" />
+	<Page Name="[Data Page] p_xml_ca3Max" PageGUID="CD33AC83-BE5D-45EA-9FC8-F025DC998CE3" />
+	<Page Name="[Data Page] p_xml_ca3Penalty" PageGUID="5ED65736-0858-4032-9C1E-5B1F4B66216C" />
+	<Page Name="[Data Page] p_xml_ca3Intp" PageGUID="23180A0D-832E-4084-81FC-E56F4927F8CD" />
+	<Page Name="[Data Page] p_xml_ca4Min" PageGUID="593D6A5E-0034-402F-AF13-E98F001142BD" />
+	<Page Name="[Data Page] p_xml_ca4Max" PageGUID="070E1B89-C1F3-416C-AC58-14AC54BADCF2" />
+	<Page Name="[Data Page] p_xml_ca4Penalty" PageGUID="9747DCD3-B5C5-463F-9CC0-C8A335F0887A" />
+	<Page Name="[Data Page] p_xml_ga1Min" PageGUID="5FF8855D-63E9-4B2B-A1A5-E945A2AE8D8A" />
+	<Page Name="[Data Page] p_xml_ga1Max" PageGUID="8CAA533B-D2A7-4897-8C48-3B7820FF4DA3" />
+	<Page Name="[Data Page] p_xml_ga1Penalty" PageGUID="1E137B9A-E54A-4B08-8EE9-19B38533F08C" />
+	<Page Name="[Data Page] p_xml_br1Intp" PageGUID="5BD12E6C-B20D-49D2-904A-1F184F9D33B4" />
+	<Page Name="[Data Page] p_xml_br1Penalty" PageGUID="6E184506-A4A8-49C9-9A2C-00F7D20BCB06" />
+	<Page Name="[Data Page] p_xml_br2Intp" PageGUID="57A61BBE-CB0F-4667-AE66-9B176A23A13D" />
+	<Page Name="[Data Page] p_xml_br2Penalty" PageGUID="A9397AED-F228-4FD4-B862-ED45323A8221" />
+	<Page Name="[Data Page] p_xml_fa2Intp" PageGUID="099EB59F-AC0F-49ED-8575-96C3FEE2729D" />
+	<Page Name="[Data Page] p_xml_fa2Penalty" PageGUID="53ADCB62-87A1-4B91-9ABE-9B772B730326" />
+	<Page Name="[Data Page] p_xml_se1Min" PageGUID="15400333-B55B-41F8-BD73-91A24568325D" />
+	<Page Name="[Data Page] p_xml_se1Penalty" PageGUID="4E3D1269-18BE-4362-A344-FFD8C242C8EF" />
+</TemplateManager>

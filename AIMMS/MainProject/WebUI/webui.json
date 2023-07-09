@@ -1,0 +1,633 @@
+{
+  "version": "4.67.0",
+  "application": {
+    "aimms.widget.type": {
+      "literal": "application"
+    },
+    "browsername": {
+      "aimms": {
+        "contents": [
+          "webui::ClientBrowserName"
+        ]
+      }
+    },
+    "browsertimezone": {
+      "aimms": {
+        "contents": [
+          "webui::BrowserTimeZone"
+        ]
+      }
+    },
+    "ignoredst": {
+      "aimms": {
+        "contents": [
+          "webui::IgnoreDST"
+        ]
+      }
+    },
+    "pages": {
+      "literal": {
+        "name": "root",
+        "slug": "root",
+        "children": [
+          {
+            "name": "Main Project",
+            "slug": "main_project",
+            "children": [
+              {
+                "name": "home",
+                "slug": "home",
+                "type": "pagev2-grid",
+                "children": [
+                  {
+                    "name": "Instance Import",
+                    "type": "pagev2-grid-dialog",
+                    "slug": "crud",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "Story",
+                "type": "pagev2-grid",
+                "slug": "story",
+                "children": []
+              },
+              {
+                "name": "Main page",
+                "type": "pagev2-grid",
+                "slug": "inputs",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "theme.classic": {
+      "literal": "NOT_ALLOWED"
+    },
+    "timezone": {
+      "aimms": {
+        "contents": [
+          "webui::DisplayTimeZone"
+        ]
+      }
+    },
+    "timezone.dst.readonly": {
+      "aimms": {
+        "contents": [
+          "webui::DefaultDSTSettingForDisplayTimeZone"
+        ]
+      }
+    },
+    "workflows.configuration": {
+      "aimms": {
+        "contents": [
+          "sp_myWorkflowSteps"
+        ],
+        "slices": [
+          {
+            "identifier": "sp_myWorkflowSteps",
+            "slice": [
+              {
+                "index": "webui::indexWorkflowOrder",
+                "type": "free",
+                "value": "webui::indexWorkflowOrder"
+              },
+              {
+                "index": "webui::indexNoOfPages",
+                "type": "free",
+                "value": "webui::indexNoOfPages"
+              },
+              {
+                "index": "webui::indexWorkflowPageSpec",
+                "type": "free",
+                "value": "webui::indexWorkflowPageSpec"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "layouts/custom_53477475-5859-4b30-8764-0784256aff19": {
+    "definition": {
+      "literal": {
+        "componentName": "Grid",
+        "props": {
+          "gridTemplateColumns": "1fr",
+          "gridTemplateRows": "1fr",
+          "gridTemplateAreas": "\"area-a\""
+        },
+        "items": [
+          {
+            "componentName": "WidgetArea",
+            "props": {
+              "gridArea": "area-a",
+              "name": "Area A",
+              "gridAutoFlow": "column"
+            }
+          }
+        ]
+      }
+    },
+    "displayName": {
+      "literal": "Custom_Master"
+    }
+  },
+  "layouts/custom_7f1b943f-0b41-4ed0-981f-9210aa749825": {
+    "definition": {
+      "literal": {
+        "componentName": "Grid",
+        "props": {
+          "gridTemplateColumns": "1fr 1fr 1fr 1fr",
+          "gridTemplateRows": "1fr",
+          "gridTemplateAreas": "\"area-a area-b area-c area-d\" \"area-a area-b area-c area-d\""
+        },
+        "items": [
+          {
+            "componentName": "WidgetArea",
+            "props": {
+              "gridArea": "area-a",
+              "name": "Area A",
+              "gridAutoFlow": "row"
+            }
+          },
+          {
+            "componentName": "WidgetArea",
+            "props": {
+              "gridArea": "area-b",
+              "name": "Area B",
+              "gridAutoFlow": "row"
+            }
+          },
+          {
+            "componentName": "WidgetArea",
+            "props": {
+              "gridArea": "area-c",
+              "name": "Area C",
+              "gridAutoFlow": "row"
+            }
+          },
+          {
+            "componentName": "WidgetArea",
+            "props": {
+              "gridArea": "area-d",
+              "name": "Area D",
+              "gridAutoFlow": "column"
+            }
+          }
+        ]
+      }
+    },
+    "displayName": {
+      "literal": "Custom_Master"
+    }
+  },
+  "layouts/custom_f8578cfe-4946-4ef3-ad7f-eca2d3945caa": {
+    "definition": {
+      "literal": {
+        "componentName": "Grid",
+        "props": {
+          "gridTemplateColumns": "1fr 1fr",
+          "gridTemplateRows": "0.7fr 0.3fr",
+          "gridTemplateAreas": "\"area-a area-b\" \"area-a area-c\""
+        },
+        "items": [
+          {
+            "componentName": "WidgetArea",
+            "props": {
+              "gridArea": "area-a",
+              "name": "Area A",
+              "gridAutoFlow": "row"
+            }
+          },
+          {
+            "componentName": "WidgetArea",
+            "props": {
+              "gridArea": "area-b",
+              "name": "Area B",
+              "gridAutoFlow": "column"
+            }
+          },
+          {
+            "componentName": "WidgetArea",
+            "props": {
+              "gridArea": "area-c",
+              "name": "Area C",
+              "gridAutoFlow": "row"
+            }
+          }
+        ]
+      }
+    },
+    "displayName": {
+      "literal": "Custom_Gantt"
+    }
+  },
+  "pages/crud": {
+    "aimms.widget.type": {
+      "literal": "pagev2-grid-dialog"
+    },
+    "bindings": {
+      "literal": [
+        {
+          "widgetUri": "instanceSelection",
+          "gridArea": "area-a",
+          "dndId": "area-ainstanceSelection0"
+        },
+        {
+          "widgetUri": "importInstance",
+          "gridArea": "area-a",
+          "dndId": "Unassigned widgetsimportInstance2"
+        },
+        {
+          "widgetUri": "metaData_1",
+          "gridArea": "area-a",
+          "dndId": "area-ametaData_11"
+        }
+      ]
+    },
+    "layoutId": {
+      "literal": "Layout11"
+    },
+    "maxcolumns": {
+      "literal": 6
+    },
+    "maxrows": {
+      "literal": 4
+    },
+    "widgets": {
+      "literal": [
+        {
+          "uri": "instanceSelection",
+          "layoutInfo": {
+            "width": "2",
+            "height": "1"
+          }
+        },
+        {
+          "uri": "metaData_1",
+          "layoutInfo": {
+            "width": "2",
+            "height": "1"
+          }
+        },
+        {
+          "uri": "importInstance",
+          "layoutInfo": {
+            "width": "2",
+            "height": "1"
+          }
+        }
+      ]
+    }
+  },
+  "pages/home": {
+    "aimms.widget.type": {
+      "literal": "pagev2-grid"
+    },
+    "bindings": {
+      "literal": [
+        {
+          "widgetUri": "img_homeLogo",
+          "gridArea": "area-d",
+          "dndId": "Unassigned widgetsimg_homeLogo1"
+        },
+        {
+          "widgetUri": "txt_welcome",
+          "gridArea": "area-a",
+          "dndId": "area-atxt_welcome0"
+        }
+      ]
+    },
+    "layoutId": {
+      "literal": "Layout10"
+    },
+    "widgets": {
+      "literal": [
+        {
+          "uri": "txt_welcome",
+          "layoutInfo": {
+            "width": "2",
+            "height": "1"
+          }
+        },
+        {
+          "uri": "img_homeLogo",
+          "layoutInfo": {
+            "width": "2",
+            "height": "1"
+          }
+        }
+      ]
+    }
+  },
+  "pages/inputs": {
+    "aimms.widget.type": {
+      "literal": "pagev2-grid"
+    },
+    "bindings": {
+      "literal": [
+        {
+          "widgetUri": "fileName",
+          "gridArea": "area-d",
+          "dndId": "area-dfileName0"
+        },
+        {
+          "widgetUri": "validationResults",
+          "gridArea": "area-c",
+          "dndId": "area-cvalidationResults1"
+        },
+        {
+          "widgetUri": "responseText",
+          "gridArea": "area-a",
+          "dndId": "area-aresponseText2"
+        },
+        {
+          "widgetUri": "metaData",
+          "gridArea": "area-b",
+          "dndId": "area-bmetaData3"
+        }
+      ]
+    },
+    "layoutId": {
+      "literal": "Layout10"
+    },
+    "secondarypageactions": {
+      "aimms": {
+        "contents": [
+          "sp_setupSecondaryActions"
+        ],
+        "slices": [
+          {
+            "identifier": "sp_setupSecondaryActions",
+            "slice": [
+              {
+                "index": "webui::indexPageExtension",
+                "type": "free",
+                "value": "webui::indexPageExtension"
+              },
+              {
+                "index": "webui::indexPageActionSpec",
+                "type": "free",
+                "value": "webui::indexPageActionSpec"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "widgets": {
+      "literal": [
+        {
+          "uri": "metaData",
+          "layoutInfo": {
+            "width": "2",
+            "height": "1"
+          }
+        },
+        {
+          "uri": "responseText",
+          "layoutInfo": {
+            "width": "2",
+            "height": "1"
+          }
+        },
+        {
+          "uri": "validationResults",
+          "layoutInfo": {
+            "width": "2",
+            "height": "1"
+          }
+        },
+        {
+          "uri": "fileName",
+          "layoutInfo": {
+            "width": "2",
+            "height": "1"
+          }
+        }
+      ]
+    }
+  },
+  "pages/story": {
+    "aimms.widget.type": {
+      "literal": "pagev2-grid"
+    },
+    "bindings": {
+      "literal": [
+        {
+          "widgetUri": "txt_problemDescription",
+          "gridArea": "area-a",
+          "dndId": "Unassigned widgetstxt_problemDescription0"
+        }
+      ]
+    },
+    "layoutId": {
+      "literal": "Layout11"
+    },
+    "widgets": {
+      "literal": [
+        {
+          "uri": "txt_problemDescription",
+          "layoutInfo": {
+            "width": "2",
+            "height": "1"
+          }
+        }
+      ]
+    }
+  },
+  "widgets/fileName": {
+    "aimms.widget.type": {
+      "literal": "scalar"
+    },
+    "contents": {
+      "aimms": {
+        "contents": [
+          "sp_saveFileName"
+        ]
+      }
+    },
+    "name": {
+      "literal": "fileName"
+    },
+    "title": {
+      "literal": "Scenario Name"
+    }
+  },
+  "widgets/img_homeLogo": {
+    "aimms.widget.type": {
+      "literal": "image"
+    },
+    "contents": {
+      "aimms": {
+        "contents": [
+          "sp_logo"
+        ]
+      }
+    },
+    "name": {
+      "literal": "img_homeLogo"
+    }
+  },
+  "widgets/importInstance": {
+    "action": {
+      "literal": {
+        "type": "procedure",
+        "value": "pr_importAndProcessData"
+      }
+    },
+    "aimms.widget.type": {
+      "literal": "button"
+    },
+    "name": {
+      "literal": "importInstance"
+    },
+    "title": {
+      "literal": "importInstance"
+    }
+  },
+  "widgets/instanceSelection": {
+    "aimms.widget.type": {
+      "literal": "selectionbox-v2"
+    },
+    "contents": {
+      "aimms": {
+        "contents": [
+          "ep_instanceFile"
+        ],
+        "slices": []
+      }
+    },
+    "name": {
+      "literal": "instanceSelection"
+    }
+  },
+  "widgets/metaData": {
+    "aimms.widget.type": {
+      "literal": "scalar"
+    },
+    "contents": {
+      "aimms": {
+        "contents": [
+          "sp_instanceName",
+          "sp_dataType",
+          "sp_contributor",
+          "sp_year",
+          "sp_month",
+          "sp_gameMode",
+          "p_qtyConstraintsCA1",
+          "p_qtyConstraintsCA2",
+          "p_qtyConstraintsCA3",
+          "p_qtyConstraintsCA4",
+          "p_qtyConstraintsGA1",
+          "p_qtyConstraintsBR1",
+          "p_qtyConstraintsBR2",
+          "p_qtyConstraintsFA2",
+          "p_qtyConstraintsSE1",
+          "p_qtyTeams",
+          "p_phased"
+        ]
+      }
+    },
+    "name": {
+      "literal": "metaData"
+    },
+    "title": {
+      "literal": "Instance Data"
+    }
+  },
+  "widgets/metaData_1": {
+    "aimms.widget.type": {
+      "literal": "scalar"
+    },
+    "contents": {
+      "aimms": {
+        "contents": [
+          "sp_instanceName",
+          "sp_dataType",
+          "sp_contributor",
+          "sp_year",
+          "sp_month",
+          "sp_gameMode",
+          "p_qtyConstraintsCA1",
+          "p_qtyConstraintsCA2",
+          "p_qtyConstraintsCA3",
+          "p_qtyConstraintsCA4",
+          "p_qtyConstraintsGA1",
+          "p_qtyConstraintsBR1",
+          "p_qtyConstraintsBR2",
+          "p_qtyConstraintsFA2",
+          "p_qtyConstraintsSE1",
+          "p_qtyTeams"
+        ]
+      }
+    },
+    "name": {
+      "literal": "instanceDetails"
+    }
+  },
+  "widgets/responseText": {
+    "aimms.widget.type": {
+      "literal": "text"
+    },
+    "contents": {
+      "aimms": {
+        "contents": [
+          "sp_response"
+        ]
+      }
+    },
+    "name": {
+      "literal": "responseText"
+    }
+  },
+  "widgets/txt_problemDescription": {
+    "aimms.widget.type": {
+      "literal": "text"
+    },
+    "contents": {
+      "literal": "<div><span style=\"background-color: inherit; font-size: 32px;\"><b>Story</b></span></div><div><br></div><div><span style=\"font-size: 18px;\">The problem is the one used for the <a href=\"https://www.sportscheduling.ugent.be/ITC2021/index.php\" target=\"_blank\">ITC 2021: International Timetabling Competition on Sports Timetabling</a>.</span></div><div><span style=\"font-size: 18px;\">You can also find details on the hackathon here:&nbsp;</span><a href=\"https://github.com/aimms/aimmscampushackathon2023\" target=\"_blank\"><span style=\"font-size: 18px;\">https://github.com/aimms/aimmscampushackathon2023</span></a></div><div><br></div><div><span style=\"font-size: 18px;\"><b>On the scope</b></span></div><div><span style=\"font-size: 18px;\">We will plan one-on-one matches between sports teams that belong to a single league. We call the complete set of matches a tournament. This tournament follows a double round-robin (2RR). Every team plays against every other team two times: once at home, once away. As a result we have (N - 1) x 2 matches per team, where N is the total number of teams.</span></div><div><span style=\"font-size: 18px;\">The planning horizon is divided into slots ((N - 1) x 2). We assume that each team plays exactly once per slot. We also assume an even number of teams. There are several types of constraints that we briefly present here.</span></div><div><span style=\"font-size: 18px;\">The challenge can be very hard! We do not expect you to implement all constraints. We will have a growing level of difficulties, so don’t worry to get them all done!</span></div><div><br></div><div><span style=\"font-size: 18px;\"><b>Constraints</b></span></div><div><span style=\"font-size: 18px;\">There are both soft and hard constraints. SOFT and HARD tags are included with each one. A PENALTY is also included for each unit of violation. The unit of violation depends on the constraint. A HARD constraint should always be satisfied (although this is sometimes very difficult).</span></div><div><br></div><div><span style=\"font-size: 18px;\"><b>Objective function</b></span></div><div><span style=\"font-size: 18px;\">We want to minimize the sum of penalized soft constraints violations.</span></div><div><br></div><div><span style=\"font-size: 18px;\"><b>Structure</b></span></div><div><span style=\"font-size: 18px;\">If the timetable instance is \"phased\", then the first half of slots in the tournament is a complete round-robin and the second half is another complete round-robin. That is, each pair of teams only sees each other once in each half, with their home-away status inverted between halves.</span></div><div><br></div><div><span style=\"font-size: 18px;\"><b>Capacity Constraints</b></span></div><div><span style=\"font-size: 18px;\">&lt;CA1 teams=\"0\" max=\"0\" mode=\"H\" slots=\"0\" type=\"HARD\"/&gt;</span></div><div><span style=\"font-size: 18px;\">Each team from teams plays at most max home/away games (mode = \"H“ or “A”) during time slots in slots. Penalty is number of games over max.</span></div><div><span style=\"font-size: 18px;\">Ex.: Team 0 cannot play at home on time slot 0.</span></div><div><br></div><div><span style=\"font-size: 18px;\">&lt;CA2 teams1=\"0\" min=\"0\" max=\"1\" mode1=\"HA\" mode2=\"GLOBAL\" teams2=\"1;2“ slots =\"0;1;2\" type=\"SOFT\"/&gt;</span></div><div><span style=\"font-size: 18px;\">Each team in teams1 plays at most max home/away/any games (mode1 = \"H“, “A” or “HA”), against teams in teams2 during time slots in slots. Mode2 will always be “GLOBAL”.</span></div><div><span style=\"font-size: 18px;\">Penalty is number of games over max.</span></div><div><span style=\"font-size: 18px;\">Ex.: Team 0 plays at most one game against teams 1 and 2 during the first three time slots.</span></div><div><br></div><div><span style=\"font-size: 18px;\">&lt;CA3 teams1=\"0\" max=\"2\" mode1=\"HA\" teams2=\"1;2;3\" intp=\"3\" mode2=\"SLOTS\" type=\"SOFT\"/&gt;</span></div><div><span style=\"font-size: 18px;\">Each team in teams1 plays at most max home/away/any games (mode1 = \"H“, “A” or “HA”) against teams in teams2 in each sequence of intp time slots. mode2 = \"SLOTS“ always.</span></div><div><span style=\"font-size: 18px;\">Penalty is number of games over max in any sequence of intp.�Ex.: Team 0 plays at most two consecutive games against teams 1, 2, and 3.</span></div><div><br></div><div><span style=\"font-size: 18px;\">&lt;CA4 teams1=\"0;1\" max=\"3\" mode1=\"H\" teams2=\"2,3\" mode2=\"GLOBAL“ slots =\"0;1\" type=\"HARD\"/&gt;</span></div><div><span style=\"font-size: 18px;\">Teams in teams1 play at most max home/away/any games (mode1 = \"H“, “A” or “HA”) against teams in teams2 during time slots in slots (when mode2 = \"GLOBAL\") or during each individual time slot in slots (mode2 = \"EVERY\").</span></div><div><span style=\"font-size: 18px;\">Penalty is number of games over max.</span></div><div><span style=\"font-size: 18px;\">Ex.: Teams 0 and 1 together play at most three home games against teams 2 and 3 during the first two time slots.</span></div><div><br></div><div><span style=\"font-size: 18px;\"><b>Game constraints</b></span></div><div><span style=\"font-size: 18px;\">&lt;GA1 min=\"0\" max=\"0\" meetings=\"0,1;1,2;\" slots=\"3\" type=\"HARD\"/&gt;</span></div><div><span style=\"font-size: 18px;\">At least min and at most max games from meetings = {(i1, j1 ), (i2, j2 ),… } take place during time slots in slots.</span></div><div><span style=\"font-size: 18px;\">Penalty is number of games under min or over max.</span></div><div><span style=\"font-size: 18px;\">Ex.: Game (0,1) and (1,2) cannot take place during time slot 3.</span></div><div><br></div><div><span style=\"font-size: 18px;\"><b>Break constraints</b></span></div><div><span style=\"font-size: 18px;\">&lt;BR1 teams=\"0\" intp=\"0\" mode2=\"HA\" slots=\"1\" type=\"HARD\"/&gt;</span></div><div><span style=\"font-size: 18px;\">Each team in teams has at most intp home/away/any breaks (mode2 = \"H“, “A” or “HA”) during time slots in slots.</span></div><div><span style=\"font-size: 18px;\">Penalty is the number of breaks over the limit. We say that a team has a break if it has two consecutive home games, or two consecutive away games.</span></div><div><span style=\"font-size: 18px;\">Ex.: Team 0 cannot have a break on time slot 1 (they cannot repeat the home or away of slot 0).</span></div><div><br></div><div><span style=\"font-size: 18px;\">&lt;BR2 homeMode=\"HA\" teams=\"0;1\" mode2=\"LEQ\" intp=\"2\" slots=\"0;1;2;3\" type=\"HARD\"/&gt;</span></div><div><span style=\"font-size: 18px;\">The sum over all breaks (homeMode = \"HA\", the only mode we consider) in teams is no more than (mode2 = \"LEQ\", the only mode we consider) intp during time slots in slots.</span></div><div><span style=\"font-size: 18px;\">Penalty is the number of breaks over the limit.</span></div><div><span style=\"font-size: 18px;\">Ex.: Team 0 and 1 together do not have more than two breaks during the first four time slots.</span></div><div><br></div><div><span style=\"font-size: 18px;\"><b>Fairness Constraints</b></span></div><div><span style=\"font-size: 18px;\">&lt;FA2 teams=\"0;1;2\" mode=\"H\" intp=\"1\" slots=\"0;1;2;3\" type=\"HARD\"/&gt;</span></div><div><span style=\"font-size: 18px;\">Each pair of teams in teams has a difference in played home games (mode = \"H\", the only mode we consider) that is not larger than intp after each time slot in slots.</span></div><div><span style=\"font-size: 18px;\">Penalty is the largest difference between home games over the limit.</span></div><div><span style=\"font-size: 18px;\">Ex.: the difference in home games played between teams 0, 1 and 2 is not larger than 1 during the first four time slots.</span></div><div><br></div><div><span style=\"font-size: 18px;\"><b>Separation&nbsp;Constraints</b></span></div><div><span style=\"font-size: 18px;\">&lt;SE1 teams=\"0;1\" min=\"5\" mode1=\"SLOTS\" type=\"HARD\"/&gt;</span></div><div><span style=\"font-size: 18px;\">Each pair of teams in teams has at least min time slots (mode1 = \"SLOTS\", the only mode we consider) between two consecutive mutual games.</span></div><div><span style=\"font-size: 18px;\">Ex.: there are at least 5 time slots between the mutual games of team 0 and 1 (that is matches 0-1 and 1-0).</span></div><div><span style=\"font-size: 18px;\">Penalty is the number of slots less then the minimum limit.</span></div><div><br></div><div><br></div>"
+    },
+    "name": {
+      "literal": "txt_problemDescription"
+    }
+  },
+  "widgets/txt_welcome": {
+    "aimms.widget.type": {
+      "literal": "text"
+    },
+    "contents": {
+      "literal": "<div style=\"text-align: center;\">&nbsp;</div><div><b style=\"background-color: inherit; font-size: 32px;\">Welcome to our 2023 AIMMS Campus Hackathon!</b></div><div><br></div><div><span style=\"background-color: inherit; font-size: 18px;\">You are now part of the AIMMS community that loves to model and optimize problems.</span></div><div><span style=\"background-color: inherit; font-size: 18px;\">&nbsp;</span></div><div><span style=\"background-color: inherit; font-size: 18px;\">During today, you will create your own solution to our challenge. If you need any help, please reach out to the consultants and/or AIMMS staff.</span></div><div><br></div><div><span style=\"font-size: 32px;\">Tips and tricks</span></div><div><br></div><div><span style=\"font-size: 18px;\">This project is a helpful starting point for the challenge. Here are some pointers.</span></div><div><br></div><div><span style=\"font-size: 18px;\">1. Session \"HACK INPUT\" contains the data structure for each instance. I suggest looking at this section and familiarizing yourself with it.</span></div><div><span style=\"font-size: 18px;\">2. Session \"HACK PROCESS\" should be where you put most of your effort in creating your optimization procedure.</span></div><div><span style=\"font-size: 18px;\">3. The Master page contains 4 page actions that will help you:</span></div><div><span style=\"font-size: 18px;\">&nbsp; &nbsp; a. Import - pr_openImportInstance / pr_importAndProcessData - opens a page dialog for you to select an instance, import it and use it.</span></div><div><span style=\"font-size: 18px;\">&nbsp; &nbsp; b.&nbsp;Random Schedule -&nbsp;pr_generateSchedule - runs a (bad) random solution generator.</span></div><div><span style=\"font-size: 18px;\">&nbsp; &nbsp; c.&nbsp;Hack-Optimizer -&nbsp;pr_optimizeTimetable - This is a placeholder procedure that you should develop in to create a custom optimization algorithm/heuristic/model. Remember to fill the identifier ep_scheduledMatch(i_team1,i_team2) with your solution.</span></div><div><span style=\"font-size: 18px;\">&nbsp; &nbsp; d.&nbsp;Validate! -&nbsp;pr_validateSolution - This will validate your solution using the ITC 2021 validator. A detailed log will present your infeasibilities and objective function.</span></div><div><span style=\"font-size: 18px;\">&nbsp; &nbsp; e.&nbsp;Save case&nbsp;-&nbsp;pr_saveCase&nbsp;- This will save your case case into the /data folder with the name that is on the Master screen.</span></div><div><span style=\"font-size: 18px;\">4. Instances grow in difficulty. AIMMS-1 has no constraints, AIMMS-2 only has CA1, AIMMS-3 only has CA2, etc. Start with the simpler ones. I have provided information on the instance when you import. Do not try to solve all of them in one go.&nbsp;ITC2021_TestX combine several constraints.</span></div><div><br></div><div><span style=\"font-size: 32px;\">Presentation</span></div><div><br></div><div><span style=\"font-size: 18px;\">Remember that at the end of the day you will need to present your solution.&nbsp;</span></div><div><span style=\"font-size: 18px;\">1. Save your solutions to instances to show during presentation. I made a Save Case button on the master page. Place a name and click the button and it will be saved in the data folder.</span></div><div><span style=\"font-size: 18px;\">2. You will be evaluated by your app User Experience, the breadth that your solution solves (how many constraints is it good at?) and the quality of the solution (can it make a 0 infeasibility and 0 objective function solution)?</span></div><div><br></div>"
+    },
+    "name": {
+      "literal": "txt_welcome"
+    }
+  },
+  "widgets/validationResults": {
+    "aimms.widget.type": {
+      "literal": "scalar"
+    },
+    "contents": {
+      "aimms": {
+        "contents": [
+          "p_infeasibilities",
+          "p_objectiveFunction",
+          "sp_validationDate"
+        ]
+      }
+    },
+    "contents.numdecimals": {
+      "literal": 0
+    },
+    "name": {
+      "literal": "validationResults"
+    },
+    "title": {
+      "literal": "Model Information"
+    }
+  }
+}

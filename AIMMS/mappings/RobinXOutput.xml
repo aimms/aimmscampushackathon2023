@@ -1,0 +1,19 @@
+<AimmsXMLMapping>
+<ElementObjectMapping name="Solution">
+	<ElementObjectMapping name="MetaData">
+		<ElementValueMapping name="InstanceName" maps-to="sp_out_instanceName"/>
+		<ElementValueMapping name="SolutionName" maps-to="sp_out_solutionName"/>
+		<!-- <ElementObjectMapping name="ObjectiveValue"> -->
+			<!-- <AttributeMapping  name="infeasibility" maps-to="p_out_infeastiblity"/> -->
+			<!-- <AttributeMapping  name="objective" maps-to="p_out_objective"/> -->
+		<!-- </ElementObjectMapping> -->
+    </ElementObjectMapping>
+	<ElementObjectMapping name="Games">
+		<ElementObjectMapping name="ScheduledMatch">
+			<AttributeMapping  name="home" binds-to="i_team1"/>
+			<AttributeMapping  name="away" binds-to="i_team2"/>
+			<AttributeMapping  name="slot" maps-to="ep_scheduledMatch(i_team1,i_team2)"/>
+		</ElementObjectMapping>
+	</ElementObjectMapping>	
+</ElementObjectMapping>
+</AimmsXMLMapping>
