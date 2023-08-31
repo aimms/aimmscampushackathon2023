@@ -589,7 +589,7 @@ Model Main_Hackathon {
 			}
 			Parameter p_ca1_isAwayMode {
 				IndexDomain: i_ca1;
-				Definition: ep_ca1_mode(i_ca1) = 'H';
+				Definition: ep_ca1_mode(i_ca1) = 'A';
 			}
 			Parameter p_ca1_min {
 				IndexDomain: i_ca1;
